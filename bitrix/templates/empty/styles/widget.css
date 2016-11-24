@@ -1,0 +1,555 @@
+/*
+*****************************************
+* styles for widget (checkbox, radio, other)
+******************************************
+*/
+
+/*
+* scroll style
+*/
+.scroll_w{
+    max-height: 100px; /* to be override*/
+    padding: 0px 15px 0 0;
+    overflow: hidden;
+    position: relative;
+}
+.scroll_frame{
+    width: 100%;
+    position: relative;
+    z-index: 999;
+}
+.scroll_box{
+    width: 14px;
+    position: absolute;
+    overflow: hidden;
+    top: 10px;
+    bottom: 10px;
+    right: 0;
+    z-index: 10;
+    background: #FFF;
+}
+.scroll_box-scroller{
+    display: block;
+    border: none !important;
+    position: absolute;
+    width: 8px;
+    border-radius: 4px;
+    height: 30px;
+    top:0;
+    left: 0;
+    margin: 0 2px;
+    background: rgb(196,198,200);
+    cursor: pointer;
+}
+
+/*
+*   checkbox for filter block
+*/
+.style-filter_checkbox input{
+    visibility: hidden;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+}
+.style-filter_checkbox {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	margin: 3px 0 0;
+	background: url('../images/sprite.png') -7px -940px no-repeat;
+	cursor: pointer;
+	vertical-align: top;
+}
+.style-filter_checkbox.checked{
+    background-position: -27px -940px;
+}
+.style-filter_checkbox.disabled{
+    background-position: -47px -940px;
+}
+
+/*
+*   main checkbox
+*/
+.style_checkbox input{
+    visibility: hidden;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+}
+.style_checkbox{
+    display: inline-block;
+    width:18px;
+    height:18px;
+    margin: 4px;
+    background: url('../images/sprite.png') -8px -984px no-repeat;
+    cursor:pointer;
+}
+.style_checkbox.checked{
+    background-position: -32px -984px;
+}
+.style_checkbox.disabled{
+    background-position: -56px -984px;
+}
+
+/*
+*   large checkbox (using in drugstores pages form mostly)
+*/
+.style-large_checkbox input{
+    visibility: hidden;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+}
+.style-large_checkbox{
+    display: inline-block;
+    width:18px;
+    height:18px;
+    margin: 4px;
+    background: url('../images/sprite.png') -8px -984px no-repeat;
+    cursor:pointer;
+}
+.style-large_checkbox.checked{
+    background-position: -32px -984px;
+}
+.style-large_checkbox.disabled{
+    background-position: -56px -984px;
+}
+
+/*
+* radio btn
+*/
+.style-radio input{
+    visibility: hidden;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    display: none;
+}
+.style-radio{
+    display: inline-block;
+    width:15px;
+    height:15px;
+    line-height: 15px;
+    margin: 4px 4px 4px 0;
+    background: url('../images/sprite.png') -8px -1009px no-repeat;
+    cursor:pointer;
+}
+.style-radio.checked{
+    background-position: -32px -1009px;
+}
+.style-radio.disabled{
+    background-position: -56px -1009px;
+}
+.style-radio.disabled + span{
+    color:rgb(140, 142, 144);
+}
+.style-radio:hover,label:hover .style-radio{
+    background-position: -80px -1009px;
+}
+.style-radio.checked:hover,label:hover .style-radio.checked{
+    background-position: -104px -1009px;
+}
+
+/*
+* cyclical_intervals SELECTOR
+*/
+.style-cyclical_intervals{
+    position: relative;
+}
+.style-cyclical_intervals-title{
+    display: inline-block;
+    position: relative;
+    color:#4164aa;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.style-cyclical_intervals-title:hover{
+    color:#F2665E;
+}
+.style-cyclical_intervals_w{
+    display: none;
+    border: 1px solid #E6E6E5;
+    box-shadow: 1px 1px 10px rgb(230,230,230);
+    position: absolute;
+    background: #FFF;
+    z-index: 10;
+    left:0;
+    padding: 6px 15px 6px 10px;
+}
+.style-cyclical_intervals_w:before{
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 11;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: #FFF;
+}
+.style-cyclical_intervals_w:after{
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 11;
+    bottom:0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: #FFF;
+}
+.style-cyclical_intervals-list{
+
+}
+.style-cyclical_intervals-list-item{
+    font-size: 14px;
+    margin: 3px 0;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.style-cyclical_intervals-list-item.current, .style-cyclical_intervals-list-item:hover{
+    color:#F2665E;
+}
+
+/*
+* TABS IN CONFIRM
+*/
+.confirm-tab-w{
+    display: block;
+    overflow: hidden;
+    padding: 0;
+    margin: 0 0 36px 0;
+    font-size: 18px;
+    line-height: 35px;
+    color: rgb(72,72,74);
+    /*font-family: TextbookNewWeb-Regular;*/
+    list-style: none;
+}
+.confirm-tab-w .confirm-tab-item{
+    display: block;
+    float: left;
+    padding: 0 22px;
+    border: 1px rgb(230,230,230) solid;
+    background: #FFF;
+    cursor: pointer;
+}
+.confirm-tab-w .confirm-tab-item.confirm-active_tab, .confirm-tab-w .confirm-tab-item:hover{
+    border: 1px rgb(88,89,91) solid;
+    background: rgb(88,89,91);
+    color: #FFF;
+}
+.confirm-tab-w .confirm-tab-item input[type="radio"]{
+    height: 1px;
+    width: 1px;
+    visibility: hidden;
+    display: none;
+}
+
+/*
+* TABS IN SHOPCART
+*/
+.confirm-tab-shopcart{
+    display: block;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    line-height: 22px;
+    color: rgb(72,72,74);
+   /* font-family: TextbookNewWeb-Regular;*/
+    list-style: none;
+}
+.confirm-tab-shopcart .confirm-tab-item{
+    display: block;
+    width: 222px;
+    height: 60px;
+    position: relative;
+    top:10px;
+    float: left;
+    text-align: center;
+    border: 1px #E6E6E6 solid;
+    background: #F7F7F7;
+    cursor: pointer;
+}
+
+
+
+.confirm-tab-shopcart .confirm-tab-item-inner{
+    width: 222px;
+    height: 60px;
+    display: table-cell;
+    vertical-align: middle;
+}
+.confirm-tab-shopcart .confirm-tab-item.disabled{
+    color: rgb(140, 142, 144) !important;
+}
+.confirm-tab-shopcart .confirm-tab-item.disabled:hover{
+    height: 60px !important;
+    top:10px !important;
+    border: 1px #E6E6E6 solid !important;
+    background: #F7F7F7 !important;
+}
+.confirm-tab-shopcart .confirm-tab-item.disabled:hover .confirm-tab-item-inner{
+    height: 60px !important;
+}
+
+.confirm-tab-shopcart .confirm-tab-item:not(:first-child){
+    margin-left: -1px;
+}
+.confirm-tab-shopcart .confirm-tab-item.confirm-active_tab, .confirm-tab-shopcart .confirm-tab-item:hover{
+    height: 70px;
+    top:1px;
+    border: 1px #E6E6E6 solid;
+    border-bottom: 1px #FFF solid;
+    background: #FFF;
+	z-index: 2;
+}
+.confirm-tab-shopcart .confirm-tab-item.confirm-active_tab .confirm-tab-item-inner, .confirm-tab-shopcart .confirm-tab-item:hover .confirm-tab-item-inner{
+    height: 70px;
+}
+.confirm-tab-shopcart .confirm-tab-item input[type="radio"]{
+    height: 1px;
+    width: 1px;
+    visibility: hidden;
+    display: none;
+}
+.confirm-tab-shopcart:after{
+    content: "";
+    border-bottom: 1px #E6E6E6 solid;
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: 0px;
+    left: 0;
+    /*z-index: -1;*/
+}
+/*
+* TABS COMMON
+*/
+.b-tabs-common{
+    display: block;
+    overflow: hidden;
+    padding: 0;
+    margin: 0 0 36px 0;
+    font-size: 18px;
+    line-height: 35px;
+    color: rgb(72,72,74);
+   /* font-family: TextbookNewWeb-Regular;*/
+    list-style: none;
+}
+.b-tabs-common .tab-common-item{
+    display: block;
+    float: left;
+    padding: 0 22px;
+    border: 1px rgb(230,230,230) solid;
+    background: #FFF;
+    cursor: pointer;
+}
+.b-tabs-common .tab-common-item.active_tab-common, .b-tabs-common .tab-common-item:hover{
+    border: 1px rgb(88,89,91) solid;
+    background: rgb(88,89,91);
+    color: #FFF;
+}
+.b-tabs-common .tab-common-item input[type="radio"]{
+    height: 1px;
+    width: 1px;
+    visibility: hidden;
+    display: none;
+}
+/*
+* TABS IN undermoscov delivery (use in cart)
+*/
+.b-confirm_deliver-list-item-undermoscow-w{
+    display: block;
+    overflow: hidden;
+    padding: 0;
+    margin: 10px -10px 20px -10px;
+    padding: 10px;
+    font-size: 16px;
+    color: rgb(72,72,74);
+    /*font-family: TextbookNewWeb-Regular;*/
+    list-style: none;
+    padding-left: 30px;
+}
+.b-confirm_deliver-list-item-undermoscow-w .undermoscow_delivery-tab{
+    display: block;
+    float: left;
+    position: relative;
+    margin: 10px 12px 0 0;
+    width: 146px;
+    padding: 18px 16px;
+    border: 1px #EBEBEB solid;
+    border-radius: 1px;
+    background: #F7F8F8;
+    cursor: pointer;
+}
+.b-confirm_deliver-list-item-undermoscow-w .undermoscow_delivery-tab-arrow{
+    position: absolute;
+    right: 40%;
+    top:20px;
+    font-size: 14px;
+    color: #8B8D90;
+}
+.b-confirm_deliver-list-item-undermoscow-w .undermoscow_delivery-tab.undermoscow_delivery-tab-active_tab .undermoscow_delivery-tab-arrow{
+    color:#C5C6C8;
+}
+.b-confirm_deliver-list-item-undermoscow-w .undermoscow_delivery-tab.undermoscow_delivery-tab-active_tab{
+    border: 1px #58595B solid;
+    background: #797B7D;
+    color: #FFF;
+}
+.b-confirm_deliver-list-item-undermoscow-w .undermoscow_delivery-tab:hover {
+    -webkit-box-shadow: 0px 1px 5px 1px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 1px 5px 1px rgba(0,0,0,0.2);
+    box-shadow: 0px 1px 5px 1px rgba(0,0,0,0.2);
+}
+.b-confirm_deliver-list-item-undermoscow-w .undermoscow_delivery-tab input[type="radio"]{
+    height: 1px;
+    width: 1px;
+    visibility: hidden;
+    display: none;
+}
+.undermoscow_delivery-tab-price{
+    font-weight: bolder;
+}
+.undermoscow_delivery-tab-price span{
+    font-weight: normal;
+}
+
+/*Ne?ieea? aey fancybox*/
+.fancybox-inner.scroll_w{max-height: 1000px;}
+.fancybox-inner .scroll_box{background: none}
+.fancybox-inner.scroll_w{overflow: hidden !important;}
+
+/*
+   *    noeee aey aaoieiiieeo aey nienea ai?ia, oeeoa
+*/
+#source_list_widget{
+    display: none;
+    margin: 0;
+    padding-left: 0px;
+    background: #fff;
+    border: 1px solid #eeedee;
+    box-shadow: -4px 4px 4px -4px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    list-style-type: none;
+    position: absolute;
+}
+#source_list_widget li{
+    list-style: none;
+    padding: 9px 10px 9px 14px;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+    white-space: nowrap;
+    cursor: pointer;
+}
+#source_list_widget li.active_item{
+    background: #436DAD;
+    color: white;
+}
+#source_list_widget li:hover{
+    width: 100%;
+    background: #436DAD;
+    color: white;
+}
+
+/* SELECT */
+.style-select{
+    display: inline-block;
+    position: relative;
+}
+.style-select.disabled{
+    color:#E6E6E6;
+}
+.style-select.disabled .style-select-title{
+    color:#E6E6E6;
+}
+.style-select select{
+    width: 1px;
+    height: 1px;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: none;
+}
+.style-select-title{
+    display: block;
+    height:40px;
+    line-height: 38px;
+    position: relative;
+    padding: 0 34px 0 10px;
+    border:1px solid #E6E6E6;
+    border-radius: 1px;
+    font-size: 14px;
+    min-width: 20px;
+    white-space: nowrap;
+    cursor: pointer;
+    color: #484849;
+    box-sizing: border-box;
+}
+.style-select-title i.fa{
+    display: block;
+    position: absolute;
+    top:0;
+    right:0;
+    height: 40px;
+    line-height: 38px;
+    width:34px;
+    text-align: center;
+    color: #484849;
+    font-size: 15px;
+}
+.style-select_w{
+    display: none;
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+    left:0;
+    border-left:1px solid #E6E6E6;
+    border-right:1px solid #E6E6E6;
+    border-bottom:1px solid #E6E6E6;
+    background: #FFF;
+    z-index: 2;
+}
+.style-select_w.scroll_w{
+    max-height: 240px;
+    padding-right: 24px;
+}
+.style-select_w .scroll_box{
+    width: 24px;
+}
+.style-select_w .scroll_box-scroller{
+    left:6px;
+}
+/*
+.style-select-list{
+    max-height:228px;
+}
+*/
+.style-select_w{
+    max-height:228px;
+}
+.style-select-list-item{
+    padding: 9px 10px 9px 14px;
+    cursor: pointer;
+    font-family: textbooknewreg, Arial, Helvetica, sans-serif;
+    background: #fff;
+}
+.style-select-list-item.current, .style-select-list-item:hover{
+    background: #436DAD;
+    color: white;
+}
+.select-default_text{
+    padding: 14px 10px 9px 14px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+    display: block;
+}
+.select-default_text:hover{
+	color:inherit !important;
+	background:#FFF !important;
+}

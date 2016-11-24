@@ -1,0 +1,37 @@
+<?php
+define('STOP_STATISTICS', true);
+define('BX_SECURITY_SHOW_MESSAGE', true);
+
+$siteId = isset($_REQUEST['SITE_ID']) && is_string($_REQUEST['SITE_ID']) ? $_REQUEST['SITE_ID'] : '';
+$siteId = substr(preg_replace('/[^a-z0-9_]/i', '', $siteId), 0, 2);
+if (!empty($siteId) && is_string($siteId))
+{
+	define('SITE_ID', $siteId);
+}
+
+require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_before.php');
+
+$request = Bitrix\Main\Application::getInstance()->getContext()->getRequest();
+
+if (!Bitrix\Main\Loader::includeModule("sale") || !$request->get('action'))
+	return;
+
+Bitrix\Main\Localization\Loc::loadMessages(dirname(__FILE__)."/class.php");
+
+$signer = new \Bitrix\Main\Security\Sign\Signer;
+try
+{
+	$params = $signer->unsign($request->get('signedParamsString'), 'sale.order.ajax');
+	$params = unserialize(base64_decode($params));
+}
+catch (\Bitrix\Main\Security\Sign\BadSignatureException $e)
+{
+	die();
+}
+
+CBitrixComponent::includeComponentClass("custom:sale.order.ajax");
+
+$component = new SaleOrderAjax();
+$component->convertAjaxRequest($request);
+$component->arParams = $component->onPrepareComponentParams($params);
+$component->executeComponent();

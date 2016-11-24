@@ -1,0 +1,39 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"О магазине", 
+		"/pages/about", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Бренды", 
+		"/manufacturers", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Статьи", 
+		"/blog", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Контакты", 
+		"/pages/contacts", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Пункт выдачи", 
+		"/zoomagazin-butovo/", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>
