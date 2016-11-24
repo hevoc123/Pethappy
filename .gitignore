@@ -3,3 +3,5 @@ log.txt
 web.config
 dbconn.php
 /images
+/include/Classes
+*.xls
