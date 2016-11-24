@@ -108,13 +108,28 @@ else {
 								<?endif;?>		
 								<li>Производитель: <a href="<?=$brand["DETAIL_PAGE_URL"]?>"><?=$brand["NAME"]?></a></li>
 							</ul><!-- end details-list -->
+                            <?if($item["DISCOUNT_PRICE_PERCENT"] > 0):?>
+							<p class="bonus-info product-action-sale_deal">
+								<span class="pseudo with-tooltip bottom js-with-tooltip">
+									<span class="tooltip-wrap">
+										<span class="tooltip">
+											<span class="tooltip-text">Скидка постоянному покупателю</span>
+										</span>
+									</span>
+									скидка <?=$item["DISCOUNT_PRICE_PERCENT"];?>%
+                                </span>
+							</p>
+                            <?endif;?>
 							<div class="spinbox"> 
 								<a href="#" class="minus <?if($item["QUANTITY"] < 2):?>disabled<?endif;?>"></a>
 								<input type="text" value="<?=$item["QUANTITY"]?>" data-id="<?=$item["PRODUCT_ID"]?>" max="<?=$item["AVAILABLE_QUANTITY"]?>" maxlength="2" id="QUANTITY_INPUT_<?=$arItem["ID"]?>" name="QUANTITY_INPUT_<?=$arItem["ID"]?>" class="_addCount">
 								<a href="#" class="plus">+</a>
 							</div><!-- end spinbox -->
-							<div class="price-wrap ">
-								<?=$item["PRICE"]?> <span class="rub">руб.</span>
+							<div class="price-wrap price-wrap--alt" <?if(!$item["DISCOUNT_PRICE_PERCENT"]):?>style="margin-top: 1px;"<?endif;?>>
+								<?=intval($item["PRICE"])?> <span class="rub">руб.</span>
+                                <?if($item["DISCOUNT_PRICE_PERCENT"] > 0):?>
+                                    <span class="old-price"><?=round($item["PRICE"]+$item["DISCOUNT_PRICE"])?></span>
+                                <?endif;?>
 							</div><!-- end price-wrap -->
 								<div class="in-presence">
 									<span class="text">Есть в наличии</span>
@@ -128,8 +143,6 @@ else {
 								</div>
 						</div>
 						<div class="clear"></div>
-						<input id="check_342771" type="checkbox" value="342771" name="cart_delete[]" class="q_check" style="display:none;">
-						<input type="hidden" value="342771" name="products_id[]">
 					</li>
 				<?endforeach;?>
 			</ul>
