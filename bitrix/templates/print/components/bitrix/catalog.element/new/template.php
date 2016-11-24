@@ -77,7 +77,7 @@ endif;?>
 		<?foreach($arResult["OFFERS"] as $key=>$arOff):?>
 			<?foreach($arOff["PRICES"] as $code=>$arPrice):?>
 				<tr>
-					<td><?=$arOff["PROPERTIES"]["IMYIE_CML2ATTR_FASOVKA"]["VALUE"]?></td><td><strong><?=intval($arPrice["VALUE"])?></strong> руб</td>
+					<td><?=$arOff["PROPERTIES"]["IMYIE_CML2ATTR_FASOVKA"]["VALUE"]?></td><td><strong><?=round($arPrice["VALUE"])?></strong> руб</td>
 				</tr>
 			<?endforeach;?>
 		<?endforeach;?>
@@ -86,7 +86,7 @@ endif;?>
 <?else:?>
 	<?foreach($arResult["PRICES"] as $code=>$arPrice):?>
 		
-			<?=intval($arPrice["VALUE"])?>
+			<?=round($arPrice["VALUE"])?>
 		
 	<?endforeach;?>
 <?endif;?>

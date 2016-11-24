@@ -1607,11 +1607,11 @@ class SaleOrderAjax extends \CBitrixComponent
 			}
 
 			$this->arElementId[] = $arBasketItem["PRODUCT_ID"];
-			$arBasketItem["SUM_NUM"] = $basketItem->getPrice() * $basketItem->getQuantity();
-			$arBasketItem["SUM"] = SaleFormatCurrency($basketItem->getPrice() * $basketItem->getQuantity(), $this->order->getCurrency());
-			$arBasketItem["SUM_BASE"] = $basketItem->getBasePrice() * $basketItem->getQuantity();
-			$arBasketItem["SUM_BASE_FORMATED"] = SaleFormatCurrency($basketItem->getBasePrice() * $basketItem->getQuantity(), $this->order->getCurrency());
-						
+			$arBasketItem["SUM_NUM"] = round($basketItem->getPrice()) * $basketItem->getQuantity();
+			$arBasketItem["SUM"] = SaleFormatCurrency(round($basketItem->getPrice()) * $basketItem->getQuantity(), $this->order->getCurrency());
+			$arBasketItem["SUM_BASE"] = round($basketItem->getBasePrice()) * $basketItem->getQuantity();
+			$arBasketItem["SUM_BASE_FORMATED"] = SaleFormatCurrency(round($basketItem->getBasePrice()) * $basketItem->getQuantity(), $this->order->getCurrency());
+
 			$arResult["BASKET_ITEMS"][] = $arBasketItem;
 		}
 	}
@@ -2264,7 +2264,7 @@ class SaleOrderAjax extends \CBitrixComponent
 		$arResult['DELIVERY_PRICE'] = $this->order->getDeliveryPrice();
 		$arResult['DELIVERY_PRICE_FORMATED'] = SaleFormatCurrency($this->order->getDeliveryPrice(), $this->order->getCurrency());
 
-		$arResult["ORDER_TOTAL_PRICE"] = $this->order->getPrice();
+		$arResult["ORDER_TOTAL_PRICE"] = round($this->order->getPrice());
 		$arResult["ORDER_TOTAL_PRICE_FORMATED"] = SaleFormatCurrency($this->order->getPrice(), $this->order->getCurrency());
 
 		$this->executeEvent('OnSaleComponentOrderOneStepProcess', $this->order);

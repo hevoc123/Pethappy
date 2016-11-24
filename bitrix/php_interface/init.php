@@ -1,5 +1,4 @@
 <?
-
 AddEventHandler("sale", "OnOrderNewSendEmail", "bxModifySaleMails");
 
 function bxModifySaleMails($orderID, &$eventName, &$arFields)
@@ -87,7 +86,7 @@ function bxModifySaleMails($orderID, &$eventName, &$arFields)
 	  $arFields["ORDER_DELIVERY_PROPERTY"].= "Способ оплаты - ".$pay_system_name."<br />";	
 	  $city=CSaleLocation::GetByID($city, "RU");	  
 	  $arFields["LOCATION"]=$city["CITY_NAME_LANG"];	  
-	  $arFields["ADDRESS"].= $street.$home.$korpus.$flat."<br />";
+	  $arFields["ADDRESS"].= $street."<br />";
 	  if($arFields["DELIVERY_TYPE"]!="Доставка курьером") $arFields["ADDRESS"]=$arFields["DELIVERY_TYPE"];
 
 	  $new_price=intval($arOrder["PRICE"])-intval($arOrder["SUM_PAID"]);

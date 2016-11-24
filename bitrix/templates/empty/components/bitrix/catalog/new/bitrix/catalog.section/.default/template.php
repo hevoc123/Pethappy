@@ -135,7 +135,7 @@ if (!empty($arResult['ITEMS']))
 						<span class="cur-price">						
 						<?foreach($arOffer["PRICES"] as $code=>$arPrice):?>
 							<?if($arPrice["CAN_ACCESS"]):?>
-								<?=intval($arPrice["VALUE"])?>
+								<?=round($arPrice["VALUE"])?>
 							<?endif;?>
 						<?endforeach;?>
 						</span>
@@ -152,7 +152,7 @@ if (!empty($arResult['ITEMS']))
 					<?if(is_array($arElement["OFFERS"]) && !empty($arElement["OFFERS"])):?>
 						<?foreach($arElement["OFFERS"][0]["PRICES"] as $code=>$arPrice):?>
 							<?if($arPrice["CAN_ACCESS"]):?>
-								<span class="rub">от</span> <?=intval($arPrice["VALUE"])?>
+								<span class="rub">от</span> <?=round($arPrice["VALUE"])?>
 							<?endif;?>
 						<?endforeach;?>
 					<?else:?>
@@ -161,7 +161,7 @@ if (!empty($arResult['ITEMS']))
 						?>
 						<?foreach($arElement["PRICES"] as $code=>$arPrice):?>
 							<?if($arPrice["CAN_ACCESS"]):?>
-								<?=intval($arPrice["VALUE"])?>
+								<?=round($arPrice["VALUE"])?>
 							<?endif;?>
 						<?endforeach;?>
 					<?endif;?>
@@ -172,7 +172,7 @@ if (!empty($arResult['ITEMS']))
 					<div class="sec-offers-list">
 						<?$first=true;
 						foreach($arElement["OFFERS"] as $key=>$arOf):?>
-							<div class="sec-offer-prop<?if($arOf["CATALOG_QUANTITY"] > 0 && $first):?> curr-offer<?$first=false; endif; if($arOf["CATALOG_QUANTITY"] <= 0):?> not-available<?endif?>"><a href="#" data-price='<?foreach($arOf["PRICES"] as $code=>$arPrice):?><?=intval($arPrice["VALUE"])?><?endforeach;?>' data-id='<?=$arOf["ID"]?>' data-canbuy='<?=($arOf["CATALOG_QUANTITY"] > 0 ? "Y" : "N")?>' data-max='<?=$arOf["CATALOG_QUANTITY"]?>' ><?=$arOf["PROPERTIES"]["IMYIE_CML2ATTR_FASOVKA"]["VALUE"]?></a></div>
+							<div class="sec-offer-prop<?if($arOf["CATALOG_QUANTITY"] > 0 && $first):?> curr-offer<?$first=false; endif; if($arOf["CATALOG_QUANTITY"] <= 0):?> not-available<?endif?>"><a href="#" data-price='<?foreach($arOf["PRICES"] as $code=>$arPrice):?><?=round($arPrice["VALUE"])?><?endforeach;?>' data-id='<?=$arOf["ID"]?>' data-canbuy='<?=($arOf["CATALOG_QUANTITY"] > 0 ? "Y" : "N")?>' data-max='<?=$arOf["CATALOG_QUANTITY"]?>' ><?=$arOf["PROPERTIES"]["IMYIE_CML2ATTR_FASOVKA"]["VALUE"]?></a></div>
 						<?endforeach;?>
 					</div>
 				<?endif;?>
@@ -238,20 +238,20 @@ if (!empty($arResult['ITEMS']))
 						<?if($inbasket):?>
 							<?foreach($inbasket_offer["PRICES"] as $code=>$arPrice):?>
 								<?if($arPrice["CAN_ACCESS"]):?>
-									<span class="bprice"><?=intval($arPrice["VALUE"])?></span>
+									<span class="bprice"><?=round($arPrice["VALUE"])?></span>
 								<?endif;?>
 							<?endforeach;?>
 						<?else:?>
 							<?foreach($arOffer["PRICES"] as $code=>$arPrice):?>
 								<?if($arPrice["CAN_ACCESS"]):?>
-									<span class="bprice"><?=intval($arPrice["VALUE"])?></span>
+									<span class="bprice"><?=round($arPrice["VALUE"])?></span>
 								<?endif;?>
 							<?endforeach;?>
 						<?endif;?>
 					<?else:?>
 						<?foreach($arElement["PRICES"] as $code=>$arPrice):?>
 							<?if($arPrice["CAN_ACCESS"]):?>
-								<span class="bprice"><?=intval($arPrice["VALUE"])?></span>
+								<span class="bprice"><?=round($arPrice["VALUE"])?></span>
 							<?endif;?>
 						<?endforeach;?>
 					<?endif;?>

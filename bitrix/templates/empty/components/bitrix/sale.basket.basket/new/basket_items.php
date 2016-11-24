@@ -39,8 +39,11 @@ else {
 		<div class="sec-cart__box-table">
 		
 			<ul class="card-list">
+                <?php
+                $total=0;
+                ?>
 				<?foreach($arResult["ITEMS"]["AnDelCanBuy"] as $key=>$item):?>
-					<?//var_dump($item);
+					<?
 					$temp=CIBlockElement::GetList(Array(), Array("ID"=>$item["PRODUCT_ID"]), false, false, Array("ID", "IBLOCK_ID", "PROPERTY_CML2_LINK", "PROPERTY_CML2_LINK.DETAIL_PAGE_URL", "PROPERTY_CML2_LINK.PROPERTY_CML2_MANUFACTURER", "PROPERTY_IMYIE_CML2ATTR_FASOVKA"))->GetNext();
 					if($temp["IBLOCK_ID"]==4)
 					{
@@ -126,7 +129,7 @@ else {
 								<a href="#" class="plus">+</a>
 							</div><!-- end spinbox -->
 							<div class="price-wrap price-wrap--alt" <?if(!$item["DISCOUNT_PRICE_PERCENT"]):?>style="margin-top: 1px;"<?endif;?>>
-								<?=intval($item["PRICE"])?> <span class="rub">руб.</span>
+								<?=round($item["PRICE"])?> <span class="rub">руб.</span>
                                 <?if($item["DISCOUNT_PRICE_PERCENT"] > 0):?>
                                     <span class="old-price"><?=round($item["PRICE"]+$item["DISCOUNT_PRICE"])?></span>
                                 <?endif;?>
@@ -144,6 +147,9 @@ else {
 						</div>
 						<div class="clear"></div>
 					</li>
+                    <?php
+                    $total+=round($item["PRICE"])*$item["QUANTITY"];
+                    ?>
 				<?endforeach;?>
 			</ul>
 			<?if(count($arResult["ITEMS"]["nAnCanBuy"]) > 0):?>
@@ -236,7 +242,7 @@ else {
 			<div class="sec-cart__info-field clearfix">
 				<div class="sec-cart__info-field-left left"><?=count($arResult["ITEMS"]["AnDelCanBuy"])?> <?=getWord(count($arResult["ITEMS"]["AnDelCanBuy"]), array("товар", "товара", "товаров"))?></div>
 				<div class="sec-cart__info-field-right right">
-					<div class="sec-cart__info-field-price"><?=$arResult["PRICE_WITHOUT_DISCOUNT"]?></div>
+					<div class="sec-cart__info-field-price"><?=$total?></div>
 				</div>
 			</div>
 
@@ -284,7 +290,7 @@ else {
 
 			<div class="sec-cart__info-total clearfix">
 				<div class="sec-cart__info-total-left left"><div>Итого:</div></div>
-				<div class="sec-cart__info-total-right right"><span><?=number_format( $arResult["allSum"], 0, ".", " ")?></span> руб.</div>
+				<div class="sec-cart__info-total-right right"><span><?=number_format( $total, 0, ".", " ")?></span> руб.</div>
 			</div>
 
 			<div class="sec-cart__info-order">

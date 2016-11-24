@@ -106,7 +106,7 @@ while ($arItems = $dbBasketItems->Fetch())
 					<?if(is_array($arResult["OFFERS"]) && !empty($arResult["OFFERS"])):?>
 						<?foreach($arOffer["PRICES"] as $code=>$arPrice):?>
 							<?if($arPrice["CAN_ACCESS"]):?>
-								<?=intval($arPrice["VALUE"])?>
+								<?=round($arPrice["VALUE"])?>
 							<?endif;?>
 						<?endforeach;?>
 					<?else:?>
@@ -116,7 +116,7 @@ while ($arItems = $dbBasketItems->Fetch())
 						?>
 						<?foreach($arResult["PRICES"] as $code=>$arPrice):?>
 							<?if($arPrice["CAN_ACCESS"]):?>
-								<?=intval($arPrice["VALUE"])?>
+								<?=round($arPrice["VALUE"])?>
 							<?endif;?>
 						<?endforeach;?>
 					<?endif;?>
@@ -132,7 +132,7 @@ while ($arItems = $dbBasketItems->Fetch())
 					<?$first=true;
 					foreach($arResult["OFFERS"] as $key=>$arOff):?>
 						<div class="sec-offer-prop<?if($arOff["CATALOG_QUANTITY"] > 0 && $first):?> curr-offer<?$first=false; endif; if($arOff["CATALOG_QUANTITY"] <= 0):?> not-available<?endif?>">
-							<a href="#" data-inbasket='<?=( in_array($arOff["ID"], $arResult["INBASKET_ID"]) ? $arResult["INBASKET"][$arOff["ID"]] : 0 )?>' data-price='<?foreach($arOff["PRICES"] as $code=>$arPrice):?><?=intval($arPrice["VALUE"])?><?endforeach;?>' data-id='<?=$arOff["ID"]?>' data-max='<?=$arOff["CATALOG_QUANTITY"]?>' data-canbuy='<?=($arOff["CATALOG_QUANTITY"] > 0 ? "Y" : "N")?>' >
+							<a href="#" data-inbasket='<?=( in_array($arOff["ID"], $arResult["INBASKET_ID"]) ? $arResult["INBASKET"][$arOff["ID"]] : 0 )?>' data-price='<?foreach($arOff["PRICES"] as $code=>$arPrice):?><?=round($arPrice["VALUE"])?><?endforeach;?>' data-id='<?=$arOff["ID"]?>' data-max='<?=$arOff["CATALOG_QUANTITY"]?>' data-canbuy='<?=($arOff["CATALOG_QUANTITY"] > 0 ? "Y" : "N")?>' >
 								<?=$arOff["PROPERTIES"]["IMYIE_CML2ATTR_FASOVKA"]["VALUE"]?>
 							</a>
 						</div>
