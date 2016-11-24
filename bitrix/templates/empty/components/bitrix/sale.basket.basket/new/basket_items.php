@@ -218,8 +218,6 @@ else {
 							<a href="javascript:void(0)" style="margin-bottom: 15px;" class="btn-reg _noticeMe" data-id="<?=$item["PRODUCT_ID"]?>">Уведомить</a>								
 						</div>
 						<div class="clear"></div>
-						<input id="check_342771" type="checkbox" value="342771" name="cart_delete[]" class="q_check" style="display:none;">
-						<input type="hidden" value="342771" name="products_id[]">
 					</li>
 				<?endforeach;?>
 			</ul>
