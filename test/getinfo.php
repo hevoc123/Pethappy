@@ -1,7 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 
-global $APPLICATION;
+global $APPL ICATION;
 global $USER;
 
 

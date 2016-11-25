@@ -1,0 +1,243 @@
+a{
+	word-wrap:break-word;
+}
+table{
+	border-collapse:collapse;
+	table-layout: fixed;
+}
+h1,h2,h3,h4,h5,h6{
+	display:block;
+	margin:0;
+	padding:0;
+}
+img,a img{
+	border:0;
+	margin:0;
+	outline:none;
+	text-decoration:none;
+}
+body{
+	height:100% !important;
+	margin:0;
+	padding:0;
+	font-family: Arial, Helvetica, sans-serif;
+	width:100% !important;
+	background: #F1EFEF;
+}
+body {
+	background: url(http://ph.1c-store.ru/images/pets_1.jpg) !important;
+}
+ul:after {
+	content: " ";
+	display: table;
+	clear: both;
+}
+ul {
+	padding: 0;
+	margin: 0;
+	list-style: outside none none;
+	background: #F6D324;
+}
+ul li {
+	float: left;
+	margin-left: 20px;
+}
+ul li a {
+	color: #471a4a;
+	font: 13px/34px Arial, sans-serif;
+	display: block;
+}
+img{
+	-ms-interpolation-mode:bicubic;
+}
+.header__brand {
+	float: left;
+	height: 50px;
+}
+.header__logo {
+	float: left;
+	color: #313131;
+}
+.header__slogan {
+	float: left;
+	height: 45px;
+	border-left: 1px solid #000;
+	padding: 5px 12px 0;
+	margin-left: 25px;
+}
+table{
+	mso-table-lspace:0pt;
+	mso-table-rspace:0pt;
+}
+p,a,li,td{
+	mso-line-height-rule:exactly;
+}
+
+p,a,li,td,body,table,blockquote{
+	-ms-text-size-adjust:100%;
+	-webkit-text-size-adjust:100%;
+}
+
+h1{
+	color:#606060 !important;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:40px;
+	font-style:normal;
+	font-weight:bold;
+	line-height:125%;
+	letter-spacing:-1px;
+	text-align:left;
+}
+h2{
+	color:#404040 !important;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:26px;
+	font-style:normal;
+	font-weight:bold;
+	line-height:125%;
+	letter-spacing:-.75px;
+	text-align:left;
+}
+h3{
+	color:#606060 !important;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:18px;
+	font-style:normal;
+	font-weight:bold;
+	line-height:125%;
+	letter-spacing:-.5px;
+	text-align:left;
+}
+h4{
+	color:#808080 !important;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:16px;
+	font-style:normal;
+	font-weight:bold;
+	line-height:125%;
+	letter-spacing:normal;
+	text-align:left;
+}
+
+.mail-wrap{
+	background: #FFFFFF;
+	width:100%;
+	width: 640px;
+	margin: 0 auto;
+}
+
+.darkFooter .bxBlockContentText{
+	color: #FFFFFF;
+}
+
+.darkFooter a{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+.darkFooter ul{
+	list-style-type: none;
+}
+
+.unsubscribe a{
+	color: #dfdfdf;
+	text-decoration: underline;
+}
+
+.bxBlockContentText{
+	font-size: 13px;
+	margin: 0;
+	padding-top: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-left: 0;
+}
+.bxBlockContentBlockText{
+	font-size: 13px;
+	margin: 0;
+	padding: 10px 8px;
+	border: 1px solid #d3d3d3;
+}
+
+.phone .bxBlockContentText{
+	font-size: 20px;
+	text-align: right;
+	vertical-align: middle;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.bxBlockContentLine{
+	border: none;
+	height: 2px;
+	background: #d3d3d3;
+	margin: 10px 0;
+	display: block;
+}
+.bxImage{
+	max-width: 100%;
+	height: auto;
+}
+.bxBlockContentImage{
+	/*
+	border: 1px solid #d3d3d3;
+	background: #fdfdfd;
+	*/
+}
+.bxBlockContentImage p{
+	text-align: center;
+	margin: 0;
+	padding:10px 0;
+	font-size: 13px;
+}
+/**/
+.mail-grid{
+	/*outline: 1px dashed #0083D1;*/
+}
+.mail-grid-cell{
+	/*outline: 1px solid #17D100;*/
+}
+.bxLink{
+
+}
+.bxButton, .bxBlockContentButton{
+	display: inline-block;
+	line-height: 22px;
+	color: #fff;
+	padding: 7px 15px ;
+	text-decoration: none;
+	text-align: center;
+}
+
+.bxButton, .bxBlockContentButtonEdge{
+	background-color: #1484CE;
+	border-radius: 3px;
+	text-align: center;
+}
+
+.bxButton:hover{
+	background: #0D6198;
+}
+
+.bxBlockPadding{
+	padding-top:9px;
+	padding-right: 18px;
+	padding-bottom: 9px;
+	padding-left: 18px;
+	padding: 9px 18px 9px 18px;
+}
+#bxStylistBody{
+padding-top: 10px;
+padding-bottom: 20px;
+}
+#bxStylistFooter{
+background: #F6D324;
+padding-top: 10px;
+padding-bottom: 15px;
+}
+#bxStylistFooter .bxBlockContentText, #bxStylistFooter .bxBlockContentText p, #bxStylistFooter .bxBlockContentBoxedText, #bxStylistFooter .bxBlockContentBoxedText p{
+color: #000000;
+}
+#bxStylistHeader{
+padding-bottom: 0px;
+padding-top: 5px;
+}

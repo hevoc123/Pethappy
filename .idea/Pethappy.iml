@@ -7,10 +7,10 @@
     <orderEntry type="module-library">
       <library name="PHP">
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../BitrixCore/modules" />
+          <root url="file://$MODULE_DIR$/../bxApiDocs-master" />
         </CLASSES>
         <SOURCES>
-          <root url="file://$MODULE_DIR$/../BitrixCore/modules" />
+          <root url="file://$MODULE_DIR$/../bxApiDocs-master" />
         </SOURCES>
       </library>
     </orderEntry>

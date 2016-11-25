@@ -1,8 +1,8 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATIO N->SetTitle("Title");
+$APPLICATION->SetTitle("Title");
 CModule::IncludeModule("iblock");
-
+/*
 $data = array();
 if (($handle = fopen($_SERVER["DOCUMENT_ROOT"]."/upload/products_20161109114220.csv", 'r')) !== FALSE)
 {
@@ -73,13 +73,13 @@ if (($handle = fopen($_SERVER["DOCUMENT_ROOT"]."/upload/products_20161109114220.
 			if(!empty($more_photos))
 			{
 				CIBlockElement::SetPropertyValuesEx($ar_res["ID"], false, array("MORE_PHOTO" => $more_photos));  
-			}*/
+			}
 			
 		}		
 	}
 	fclose($handle);
 }
-//return $data;
+//return $data;*/
 ?>
 
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
