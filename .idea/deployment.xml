@@ -10,7 +10,6 @@
           <excludedPaths>
             <excludedPath path="/home/bitrix/ext_www/pethappy.ru/upload" />
             <excludedPath path="/home/bitrix/ext_www/pethappy.ru/bitrix/activities" />
-            <excludedPath path="/home/bitrix/ext_www/pethappy.ru/bitrix/admin" />
             <excludedPath path="/home/bitrix/ext_www/pethappy.ru/bitrix/backup" />
             <excludedPath path="/home/bitrix/ext_www/pethappy.ru/bitrix/cache" />
             <excludedPath path="/home/bitrix/ext_www/pethappy.ru/bitrix/catalog_export" />
@@ -35,7 +34,6 @@
             <excludedPath path="/home/bitrix/ext_www/pethappy.ru/bitrix/wizards" />
             <excludedPath local="true" path="$PROJECT_DIR$/upload" />
             <excludedPath local="true" path="$PROJECT_DIR$/bitrix/activities" />
-            <excludedPath local="true" path="$PROJECT_DIR$/bitrix/admin" />
             <excludedPath local="true" path="$PROJECT_DIR$/bitrix/backup" />
             <excludedPath local="true" path="$PROJECT_DIR$/bitrix/cache" />
             <excludedPath local="true" path="$PROJECT_DIR$/bitrix/catalog_export" />

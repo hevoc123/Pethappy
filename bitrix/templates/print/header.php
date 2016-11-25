@@ -49,9 +49,9 @@
 		.clear				{clear:both;}
 		.logo				{float:left; padding:30px; width: 300px;}
 		.logo_img			{width:165px; height:43px;}
-		.phone_box			{float:right; padding:30px; width:255px; font-weight: bold;}
+		.phone_box			{float:right; padding:30px; width:250px; font-weight: bold;}
 		.phone_img			{float:left; width:45px; height:46px;}
-		.phone_text			{width:200px; float: right; text-align: right;}
+		.phone_text			{width:200px; float: right; text-align: left;}
 		.phone_text .text	{color:rgba(240,64,54,0.8); font-size:11px; }
 		.phone_text .phone	{color:rgb(60,111,174); font-size:22px; letter-spacing: 1px; line-height:28px; }
 		.btn-action_print	{width: 100px; height: 35px; background: rgba(240,64,54,0.8); outline: none; border: 1px solid #DE5645;
@@ -89,7 +89,7 @@ $bcount=$dbBasketItems->SelectedRowsCount();
 		</div>
 		<div class="phone_box">
 			<div class="phone_img">
-				<? /*<a href="/" title="Интернет-зоомагазин Pethappy.ru"><img src="/images/print-phone_time.png" alt="Интернет-зоомагазин Pethappy.ru"></a>*/ ?>
+				<a href="/" title="Интернет-зоомагазин Pethappy.ru"><img src="/images/print-phone_time.png" alt="Интернет-зоомагазин Pethappy.ru"></a>
 			</div>
 			<div class="phone_text">
 				<div class="text">Заказ по телефону с 10 до 20 </div>
