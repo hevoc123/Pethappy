@@ -123,6 +123,28 @@ function bxModifySaleMails($orderID, &$eventName, &$arFields)
     ';
 }
 
+AddEventHandler("main", "OnAfterUserAdd", "OnAfterUserRegisterHandler");
+AddEventHandler("main", "OnAfterUserRegister", "OnAfterUserRegisterHandler");
+AddEventHandler("main", "OnAfterUserSimpleRegister", "OnAfterUserRegisterHandler");
+
+function OnAfterUserRegisterHandler(&$arFields)
+{
+    if (intval($arFields["ID"])>0)
+    {
+        $toSend = Array();
+        if($arFields["CONFIRM_PASSWORD"]) $toSend["PASSWORD"] = $arFields["CONFIRM_PASSWORD"];
+        if($arFields["PASSWORD_CONFIRM"]) $toSend["PASSWORD"] = $arFields["PASSWORD_CONFIRM"];
+        $toSend["EMAIL"] = $arFields["EMAIL"];
+        $toSend["USER_ID"] = $arFields["ID"];
+        $toSend["USER_IP"] = $arFields["USER_IP"];
+        $toSend["USER_HOST"] = $arFields["USER_HOST"];
+        $toSend["LOGIN"] = $arFields["LOGIN"];
+        $toSend["NAME"] = (trim ($arFields["NAME"]) == "")? $toSend["NAME"] = htmlspecialchars('<Не указано>'): $arFields["NAME"];
+        $toSend["LAST_NAME"] = (trim ($arFields["LAST_NAME"]) == "")? $toSend["LAST_NAME"] = htmlspecialchars('<Не указано>'): $arFields["LAST_NAME"];
+        CEvent::SendImmediate ("MY_NEW_USER", "s1", $toSend);
+    }
+    return $arFields;
+}
 
 function getWord($number, $suffix)
 {

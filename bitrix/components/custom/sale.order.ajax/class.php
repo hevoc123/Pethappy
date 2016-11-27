@@ -839,12 +839,12 @@ class SaleOrderAjax extends \CBitrixComponent
 			$newLastName = $arNames[0];
 		}
 
-		$pos = strpos($newLogin, "@");
-		if ($pos !== false)
-			$newLogin = substr($newLogin, 0, $pos);
+		//$pos = strpos($newLogin, "@");
+		//if ($pos !== false)
+		//	$newLogin = substr($newLogin, 0, $pos);
 
-		if (strlen($newLogin) > 47)
-			$newLogin = substr($newLogin, 0, 47);
+		//if (strlen($newLogin) > 47)
+		//	$newLogin = substr($newLogin, 0, 47);
 
 		if (strlen($newLogin) < 3)
 			$newLogin .= "_";
