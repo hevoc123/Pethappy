@@ -16,8 +16,8 @@ $serverName = $protocol . "://" . $arParams["SERVER_NAME"];
 ?>
 <body class="" data-bx-block-editor-block-status="content"
       style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;height: 100% !important;margin: 0;padding: 0;font-family: Arial, Helvetica, sans-serif;width: 100% !important;background: url(http://ph.1c-store.ru/images/pets_1.jpg) !important;">
-<div style="width: 100%; background: url(http://ph.1c-store.ru/images/pets_1.jpg);">
-    <div class="mail-wrap" style="background: #FFFFFF;width: 640px;margin: 0 auto;">
+<div style="width: 100%; padding-top: 15px; background: url(http://ph.1c-store.ru/images/pets_1.jpg);">
+    <div class="mail-wrap" style="background: #FFFFFF;width: 640px; margin: 0 auto;">
         <center>
             <ul class="menu cleara" style="display: block;height: 35px; background: #436DAD; color: #FFF; padding: 0;margin: 0;list-style: outside none none;">
                 <li style="float: left;margin-left: 20px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-line-height-rule: exactly;">

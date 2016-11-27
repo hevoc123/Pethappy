@@ -3954,11 +3954,11 @@ class SaleOrderAjax extends \CBitrixComponent
 								$arPaySysAction["BUFFERED_OUTPUT"] = $paySystemBufferedOutput;
 								$toSend["PAYMENT"] = $paySystemBufferedOutput; 
 								if(strlen($toSend["PAYMENT"]) > 0)  {
-									$toSend["PAYMENT"]=strip_tags($toSend["PAYMENT"]);
-									$toSend["PAYMENT"].='
+									//$toSend["PAYMENT"]=strip_tags($toSend["PAYMENT"]);
+									$toSend["PAYMENT"]='
 									<form method="GET" action="http://www.pethapppy.ru/include/payment.php" target="_blank">
 									<input type="hidden" name="ORDER_ID" value="'.$arOrder['ID'].'">
-									<input type="submit" value="Перейти к оплате">
+									<input type="submit" value="Оплатить">
 									</form>
 									';
 								}
@@ -3978,8 +3978,9 @@ class SaleOrderAjax extends \CBitrixComponent
 		}
 		else
 			$arResult["ACCOUNT_NUMBER"] = $orderId;
-				
-		CEvent::SendImmediate("SALE_NEW_ORDER", SITE_ID, $toSend);
+
+        //if($toSend["EMAIL"])
+		//    CEvent::SendImmediate("SALE_NEW_ORDER", SITE_ID, $toSend);
 	}
 
 	protected function saveOrder($saveToSession = false)

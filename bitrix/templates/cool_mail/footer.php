@@ -252,7 +252,7 @@ bicubic;border: 0;margin: 0;outline: none;text-decoration: none;"/>
                                                                         style="color: #FFF;text-decoration: underline;word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-line-height-rule: exactly;"
                                                                         tel:84956490303="">8 (495) 649-0303</a> mail: <a
                                                                         style="color: #FFF;text-decoration: underline;word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-line-height-rule: exactly;"
-                                                                        href="mailto:info@pethappy.ru">info@pethappy.ru</a><br/>
+                                                                        href="mailto:manger@pethappy.ru">info@pethappy.ru</a><br/>
                                                                 </p></td>
                                                         </tr>
                                                         </tbody>
