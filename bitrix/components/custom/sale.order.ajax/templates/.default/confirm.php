@@ -1,11 +1,9 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <?
-if ($arParams["SET_TITLE"] == "Y")
-	$APPLICATION->SetTitle(Bitrix\Main\Localization\Loc::getMessage("SOA_ORDER_COMPLETE"));
-
 if (!empty($arResult["ORDER"]))
 {
-	//var_dump($arResult["ORDER"]);
+	if ($arParams["SET_TITLE"] == "Y")
+		$APPLICATION->SetTitle(Bitrix\Main\Localization\Loc::getMessage("SOA_ORDER_COMPLETE"));
 	?>
 	<div class="success_order">
 			<h2 class="h1-title">Спасибо за заказ!</h2>
@@ -71,17 +69,27 @@ if (!empty($arResult["ORDER"]))
 }
 else
 {
+    if ($arParams["SET_TITLE"] == "Y")
+        $APPLICATION->SetTitle("Ошибка");
 	?>
 	<b><?=GetMessage("SOA_ERROR_ORDER")?></b><br /><br />
 
 	<table class="sale_order_full_table">
 		<tr>
 			<td>
-				<?=GetMessage("SOA_ERROR_ORDER_LOST", Array("#ORDER_ID#" => $arResult["ACCOUNT_NUMBER"]))?>
-				<?=GetMessage("SOA_ERROR_ORDER_LOST1")?>
+				Авторизуйтесь, чтобы просматривать свои заказы<br />
 			</td>
 		</tr>
 	</table>
+    <table width="100%">
+        <tbody>
+        <tr>
+            <td style="text-align: center">
+                <img style="max-width: 425px; width: 100%;" src="/images/password.jpg">
+            </td>
+        </tr>
+        </tbody>
+    </table>
 	<?
 }
 ?>

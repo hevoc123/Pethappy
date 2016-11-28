@@ -55,6 +55,7 @@ class SaleOrderAjax extends \CBitrixComponent
 	protected $context;
 	protected $checkSession = true;
 	protected $isRequestViaAjax;
+    protected $isExitUser = false;
 
 	public function onPrepareComponentParams($arParams)
 	{
@@ -838,13 +839,6 @@ class SaleOrderAjax extends \CBitrixComponent
 			$newName = $arNames[1];
 			$newLastName = $arNames[0];
 		}
-
-		//$pos = strpos($newLogin, "@");
-		//if ($pos !== false)
-		//	$newLogin = substr($newLogin, 0, $pos);
-
-		//if (strlen($newLogin) > 47)
-		//	$newLogin = substr($newLogin, 0, 47);
 
 		if (strlen($newLogin) < 3)
 			$newLogin .= "_";
@@ -3978,8 +3972,6 @@ class SaleOrderAjax extends \CBitrixComponent
 		}
 		else
 			$arResult["ACCOUNT_NUMBER"] = $orderId;
-				
-		//CEvent::SendImmediate("SALE_NEW_ORDER", SITE_ID, $toSend);
 	}
 
 	protected function saveOrder($saveToSession = false)
