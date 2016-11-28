@@ -1,6 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Title");
+$APPLICATION->SetTitle("Авторизация");
+$APPLICATION->SetPageProperty("TITLE", "Авторизация");
 ?><?$APPLICATION->IncludeComponent("bitrix:system.auth.form", "new", Array(
 	"COMPONENT_TEMPLATE" => ".default",
 		"REGISTER_URL" => "/registration/",	// Страница регистрации

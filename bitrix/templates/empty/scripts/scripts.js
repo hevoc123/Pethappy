@@ -1294,27 +1294,23 @@ $(document).ready(function (){
 			window.in_ajax = 1;
 			$.ajax({
 				data:data,
-				url:'/ajax/password_forgotten',
+				url:'/include/password_forgotten.php',
 				method:'post',
 				dataType:'json',
 				success: function(data){
 					console.log(data);
 					window.in_ajax = 0;
 					if(data['error']){
-
 						wsPoperValid.init([
-							_.find('[name=email_address]'),data['error']
+							_.find('[name=USER_EMAIL]'),data['error']
 						]);
 					}else{
 						wrap.find('.js-enter-module').addClass('display-none');
 						wrap.find('.js-register-module').addClass('display-none');
 						wrap.find('.js-repair-module').addClass('display-none');
 						wrap.find('.js-repair2-module').removeClass('display-none');
-						if(data.type && data.type == 2){
-							wrap.find('.js-repair-phone').removeClass('dn');
-						} else {
-							wrap.find('.js-repair-email').removeClass('dn');
-						}
+						wrap.find('.js-repair-email').removeClass('dn');
+
 					}
 				}
 			});

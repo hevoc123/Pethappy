@@ -38,7 +38,7 @@ if ($arResult['SHOW_ERRORS'] == 'Y' && $arResult['ERROR'])
 
 	<input type="submit" style="display: none;" name="Login" value="<?=GetMessage("AUTH_LOGIN_BUTTON")?>" />
 	
-	<p><noindex><a href="<?=$arResult["AUTH_FORGOT_PASSWORD_URL"]?>" class="forgotpass-link">Забыли пароль?</a></noindex></p>
+	<p><noindex><a href="/auth/forgot/" class="forgotpass-link">Забыли пароль?</a></noindex></p>
 	
 	<div class="btn-wrap">
 		<a href="javascript:void(0)" onclick="$(this).closest('form').submit()" class="btn-reg js-submit-btn">Войти</a>

@@ -381,7 +381,7 @@ $GLOBALS["bcount"]=$bcount;
 								<a href="#" class="fb login_popup_soc_btn" data-soc-name="fb"><i class="piluli-11"></i></a>
 							</div><!-- end social-module -->*/ ?>
 							<p>Авторизация покупателя:</p>
-							<label class="for-input"><input data-validation="true" id="log_autoriz" type="text" name="email_address" class="lpti" placeholder="Email или телефон"></label>
+							<label class="for-input"><input data-validation="true" id="log_autoriz" type="text" name="email_address" class="lpti" placeholder="Email"></label>
 							<label class="for-input"><input class="lpti" data-validation="true" id="pass_autoriz" type="password" name="password" placeholder="Пароль"></label>
 							<p><a href="#" class="forgotpass-link js-repair-module-link">Забыли пароль?</a></p>
 							<input type="hidden" name="type_of_client" value="1">
@@ -462,15 +462,18 @@ $GLOBALS["bcount"]=$bcount;
 				</div>
 				<div class="table display-none js-repair-module">
 					<div class="leftcol cell">
-						<form action="#">
+						<form action="/auth/forgot/">
+							<input type="hidden" name="backurl" value="/auth/forgot/">
+							<input type="hidden" name="AUTH_FORM" value="Y">
+							<input type="hidden" name="TYPE" value="SEND_PWD">
 							<br>
 
 							<h1>Забыли пароль?</h1>
-							<p>Если Вы забыли свой пароль, введите<br>e-mail или телефон, указанный при регистрации.</p><p>На него будет выслана инструкция по восстановлению пароля.</p>
+							<p>Если Вы забыли свой пароль, введите<br>e-mail, указанный при регистрации.</p><p>На него будет выслана инструкция по восстановлению пароля.</p>
 
 							<br>
 
-							<label class="for-input"><input name="ident" type="text" placeholder="Электронная почта или телефон"></label>
+							<label class="for-input"><input name="USER_EMAIL" type="text" placeholder="Электронная почта"></label>
 
 							<br>
 

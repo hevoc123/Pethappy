@@ -37,4 +37,3 @@ if($_REQUEST["action"]=="delete_product")
 }
 
 echo CSaleBasket::GetList(array("ID" => "ASC"), array("FUSER_ID" => CSaleBasket::GetBasketUserID(), "ORDER_ID" => "NULL"))->SelectedRowsCount();
-?>
