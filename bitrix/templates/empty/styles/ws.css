@@ -673,6 +673,19 @@ ul.list-info li.i { background-image: url(data:image/gif;base64,R0lGODlhEQAQAMZ3
     min-width: 100px;
 	z-index: 9999;
 }
+
+.spinbox .tooltip__hint {
+    left: inherit;
+}
+
+._plusMinus .tooltip__hint {
+    left: 10px !important;
+}
+
+.withoffer:hover ._plusMinus .tooltip__hint {
+    left: 51px !important;
+}
+
 .card-form-small .leftcol{
     display: table;
     float:left;

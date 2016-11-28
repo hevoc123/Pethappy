@@ -62,7 +62,6 @@ $(function(){
             } else {
                 $form.find('.ws-miniloader').removeClass('ws-miniloader');
                 if(res.fields){
-					console.log(res.fields);
                     $form.find('.lpti-error').removeClass('lpti-error');
                     $.each(res.fields, function(f, mess){
                         var $f = $form.find('[name='+f+']');
@@ -409,6 +408,7 @@ $(function(){
 			var offer = $(this).parents(".for-transform").find(".curr-offer a");
 
             var value_field = $item.find('._addCount');
+            var mq = $item.find('._addCount').attr("max");
             var count = parseInt(value_field.val()) + 1;
             var variation = parseInt($item.data('variation_id'));
 
@@ -437,6 +437,15 @@ $(function(){
                 if(price_buy_block.find('._addToCart').length){
 					$(this).parents(".for-transform").find('._addToCart').text('В корзине').removeAttr('onclick').addClass('in_cart').attr('href','/personal/cart/');
                 }
+            }
+
+            if(count >= mq)
+            {
+                wsPoperValid.init([
+                    value_field, 'Выбрано максимальное количество'
+                ]);
+
+                setTimeout(function () {wsPoperValid.removePoper(value_field)}, 2000);
             }
 
             count = count > (value_field.attr('max')) ? (value_field.attr('max')) : count;
@@ -1056,7 +1065,6 @@ function dataLayerDeleteFromoCart(id,name){
 }
 */
 function recalculateShopCart(product_id, quantity, _this, variation_id) {
-	console.log(product_id);
     if (product_id && quantity) {
         var data_to_send = "product_id="+product_id + "&quantity=" + quantity;
 

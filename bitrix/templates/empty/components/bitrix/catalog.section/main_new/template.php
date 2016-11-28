@@ -214,9 +214,9 @@ if (!empty($arResult['ITEMS']))
 				<?endif?>
 				<span class="added-to-cart">Добавлено в <a href="/personal/cart/">корзину</a></span>
 
-				<div class="spinbox _plusMinus recalculate" data-id="<?=$arElement["ID"]?>">
+				<div class="spinbox _plusMinus recalculate" data-id="<?=(is_array($arElement["OFFERS"]) && !empty($arElement["OFFERS"]) ? $arOffer["ID"] : $arElement["ID"])?>">
 					<a href="javascript:void(0)" class="minus buttonMinus"></a>
-						<input type="text" maxlength="3" max="999" class="_addCount" value="<?=( $inbasket ? $arResult["INBASKET"][$inbasket] : 1)?>"/>
+						<input type="text" maxlength="3" max="<?=(is_array($arElement["OFFERS"]) && !empty($arElement["OFFERS"]) ? $arOffer["CATALOG_QUANTITY"] : $arElement["CATALOG_QUANTITY"])?>" class="_addCount" value="<?=( $inbasket ? $arResult["INBASKET"][$inbasket] : 1)?>"/>
 					<a href="javascript:void(0)" class="plus buttonPlus">+</a>
 				</div>
 				<!-- end spinbox -->

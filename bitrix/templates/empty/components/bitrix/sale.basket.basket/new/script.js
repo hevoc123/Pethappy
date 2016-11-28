@@ -8,7 +8,7 @@ $(function(){
 		 parent = ths.closest('.spinbox'),
 		 input = parent.find('input[type="text"]'),
 		 v = parseInt(input.val());
-		 var pid=input.attr("data-id"); 
+		 var pid=input.attr("data-id");
 
 		 if (v>1) { v--; input.val(v); }
 
@@ -40,6 +40,17 @@ $(function(){
 		 minus = parent.find('a.minus'),
 		 input = parent.find('input[type="text"]'),
 		 v = parseInt(input.val());
+		 var mq = parseInt(input.attr("max"));
+
+		 if(v >= mq)
+         {
+             wsPoperValid.init([
+                 input, 'Выбрано максимальное количество'
+             ]);
+
+             setTimeout(function () {wsPoperValid.removePoper(input)}, 2000);
+         }
+
 		 var pid=input.attr("data-id"); 
 
 		 v++; 
