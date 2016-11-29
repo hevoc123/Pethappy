@@ -12,7 +12,7 @@ $password_chars = array(
 );
 
 $APPLICATION->Set Title("Title");
-CModule::IncludeModule("iblock");
+CModule::Includ eModule("iblock");
 
 $users=Array();
 

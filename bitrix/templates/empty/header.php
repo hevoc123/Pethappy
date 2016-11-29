@@ -385,7 +385,6 @@ $GLOBALS["bcount"]=$bcount;
 							<label class="for-input"><input class="lpti" data-validation="true" id="pass_autoriz" type="password" name="password" placeholder="Пароль"></label>
 							<p><a href="#" class="forgotpass-link js-repair-module-link">Забыли пароль?</a></p>
 							<input type="hidden" name="type_of_client" value="1">
-							<input type="hidden" name="refer_back" value="/blind/page_blocks?backurl=http%3A%2F%2Fwww.piluli.ru%2F&amp;page_type=&amp;page_prf_link=&amp;detected_city=&amp;sypex_geo_redirect=&amp;lgot_sn=0">
 							<div class="btn-wrap">
 								<button type="submit" class="btn-reg">Войти</button>
 								<a href="#" class="btn-link js-register-module-link" id="b-inside-tab-register">Зарегистрироваться</a>
@@ -431,7 +430,6 @@ $GLOBALS["bcount"]=$bcount;
 							<label class="for-input"><input type="password" placeholder="Пароль" name="popup_password" class="lpti" autocomplete="off"></label>
 							<p class="note">Регистрируясь на нашем сайте, вы подтверждаете, что ознакомлены с <a class="fancybox fancybox.ajax" href="/blind/privacy.php"> Политикой конфиденциальности</a></p>
 							<input type="hidden" name="type_of_client" value="1">
-							<input type="hidden" name="refer_back" value="/blind/page_blocks?backurl=http%3A%2F%2Fwww.piluli.ru%2F&amp;page_type=&amp;page_prf_link=&amp;detected_city=&amp;sypex_geo_redirect=&amp;lgot_sn=0">
 							<div class="btn-wrap">
 								<button type="submit" class="btn-reg _validatePopupReg">Зарегистрироваться</button>
 								<a href="#" class="btn-link js-enter-module-link" id="b-inside-tab-login">Войти</a>
@@ -526,7 +524,7 @@ $GLOBALS["bcount"]=$bcount;
 						</form>
 					</div>
 					<div class="rightcol cell">
-						<h2>Ваш личный кабинет на Piluli.ru:</h2>
+						<h2>Ваш личный кабинет на Pethappy.ru:</h2>
 						<ul class="account-features-list">
 							<!--li class="table">
 								<div class="cell"><i class="piluli-58"></i></div>

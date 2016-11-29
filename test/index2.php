@@ -6,7 +6,7 @@ CModule::IncludeModule("iblock"); CModule::IncludeModule("sale");
 
 $orders=Array();
 $data = array();
-if (($handle = fopen($_SERVER["DOCUMENT_ROOT"]."/upload/orders2.csv", 'r')) !== FALSE)
+if (($handle = fopen($_SERVER["DOCUMENT_ROOT"]."/upload/last.csv", 'r')) !== FALSE)
 {
     $i=0;
 
@@ -14,9 +14,8 @@ if (($handle = fopen($_SERVER["DOCUMENT_ROOT"]."/upload/orders2.csv", 'r')) !== 
     {
         $i++;
         if($i==1) continue;
-        $orders[$row[0]]["delivery"]=$row["12"];
-        $orders[$row[0]]["address"]=$row["13"];
-        $orders[$row[0]]["comment"]=$row["15"];
+        $orders[$row[0]]["status"]=$row["1"];
+        $orders[$row[0]]["payed"]=$row["16"];
 
         //var_dump($orders[$row[0]]);
     }
@@ -24,42 +23,35 @@ if (($handle = fopen($_SERVER["DOCUMENT_ROOT"]."/upload/orders2.csv", 'r')) !== 
 
     foreach($orders as $id=>$order)
     {
+        //if($id < 6955) continue;
         $arOrder = CSaleOrder::GetByID($id);
         if ($arOrder)
         {
-            /*$arFields = array(
-                "COMMENTS" => $order["comment"],
-            );
+            $arFields=Array();
+            if($order["payed"]=="Да")
+                $arFields["PAYED"]="Y";
+            else
+                $arFields["PAYED"]="N";
 
-            if(strstr($order["delivery"], "Самовывоз")) $arFields["DELIVERY_ID"]=4;
-            if(strstr($order["delivery"], "Курьером")) $arFields["DELIVERY_ID"]=5;
-            if(strstr($order["delivery"], "по России")) $arFields["DELIVERY_ID"]='rus_post:land';
+            if(strstr($order["status"], "[D]"))
+                $arFields["STATUS_ID"]="D";
+            elseif(strstr($order["status"], "[A]"))
+                $arFields["STATUS_ID"]="N";
+            elseif(strstr($order["status"], "[B]"))
+                $arFields["STATUS_ID"]="B";
+            elseif(strstr($order["status"], "[C]"))
+                $arFields["STATUS_ID"]="C";
+            elseif(strstr($order["status"], "[E]")) {
+                $arFields["STATUS_ID"] = "E";
+                $arFields["CANCELED "] = "Y";
+            }
+            elseif(strstr($order["status"], "[F]"))
+                $arFields["STATUS_ID"]="F";
+            elseif(strstr($order["status"], "[G]"))
+                $arFields["STATUS_ID"]="G";
 
-            //var_dump( $arFields);
-
-            CSaleOrder::Update($id, $arFields);*/
-
-            $order["address"]=str_replace("Россия, Москва, ", "", $order["address"]);
-
-            $arFields = array(
-                "ORDER_ID" => $id,
-                "ORDER_PROPS_ID" => 6,
-                "NAME" => "Адрес",
-                "CODE" => "ADDRESS",
-                "VALUE" => $order["address"]
-            );
-
-            var_dump($arFields);
-
-            $db_vals = CSaleOrde rPropsValue::GetList(
-                array("SORT" => "ASC"),
-                array(
-                    "ORDER_ID" => $id,
-                    "ORDER_PROPS_ID" => 6
-                )
-            );
-            if ($arVals = $db_vals->Fetch())
-                CSaleOrderPropsValue::Update($arVals["ID"], $arFields);
+            var_dump($id);var_dump($arFields);
+            CSale Order::Update($id, $arFields);
         }
     }
 

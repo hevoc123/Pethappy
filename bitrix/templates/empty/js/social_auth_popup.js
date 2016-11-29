@@ -327,42 +327,19 @@ $(document).ready(function () {
 
 	var l = {
 		get_base_domain: function () {
-			return ((location.hostname.indexOf('pilu.li') > -1) ? location.hostname : 'piluli.ru');
+			return ((location.hostname.indexOf('pilu.li') > -1) ? location.hostname : 'pethappy.ru');
 		},
 		funcs: {
-			vk: function (redirect_uri) {
-				location.href = 'https://oauth.vk.com/authorize?client_id=4823491&scope=email&redirect_uri=' + redirect_uri + '&display=popup&response_type=token&v=5.28';
-			},
-			ok: function (redirect_uri) {
-				location.href = 'http://www.odnoklassniki.ru/oauth/authorize?scope=VALUABLE_ACCESS;GET_EMAIL&client_id=1109929984&response_type=token&redirect_uri=' + redirect_uri; 
-			},
-			fb: function (redirect_uri) {
-				location.href = 'https://www.facebook.com/dialog/oauth?scope=public_profile,user_birthday,email,user_hometown,user_location&client_id=779421018786405&redirect_uri=' + redirect_uri + '&response_type=token';
-			},
-			tw: function (redirect_uri) {
-				location.href = '/social_auth_twitter.php';
-			},
-			ya: function (redirect_uri) {
-				location.href = 'https://oauth.yandex.ru/authorize?response_type=token&client_id=62cd242bfcad4376a41dfa43a19cb28e';
-			},
-			gp: function (redirect_uri) {
-				location.href = '/social_auth_google/';
-			},
-			mr: function (redirect_uri) {
-				location.href = 'https://connect.mail.ru/oauth/authorize?client_id=727396&response_type=token&redirect_uri=' + redirect_uri;
-			},
-			li: function (redirect_uri) {
-				location.href = 'https://www.linkedin.com/uas/oauth2/authorization?response_type=code&scope=r_emailaddress%20r_basicprofile%20r_contactinfo&client_id=77lqmz7ky6ng0v&state=RND' + Math.random().toString().slice(2) + '&redirect_uri=' + encodeURIComponent('http://' + l.get_base_domain() + '/social_auth_linkedin.php');
-			}
+
 		},
 		click: function () {
 			var name = $(this).attr('data-soc-name');
 			if (name in l.funcs) {
 				$.cookie(
-					'social_auth_base_domain', 
+					'social_auth_base_domain',
 					location.hostname,
 					{
-						domain: ((location.hostname.indexOf('pilu.li') > -1) ? '.pilu.li' : '.piluli.ru'),
+						domain: ((location.hostname.indexOf('pilu.li') > -1) ? '.pilu.li' : '.pethappy.ru'),
 						expires: new Date((new Date()).getTime() + 5 * 60 * 1000), // 30 min
 						path: '/'
 					}
@@ -372,7 +349,7 @@ $(document).ready(function () {
 					'social_auth_base_url_path',
 					location.pathname + location.search,
 					{
-						domain: ((location.hostname.indexOf('pilu.li') > -1) ? '.pilu.li' : '.piluli.ru'),
+						domain: ((location.hostname.indexOf('pilu.li') > -1) ? '.pilu.li' : '.pethappy.ru'),
 						expires: new Date((new Date()).getTime() + 5 * 60 * 1000), // 30 min
 						path: '/'
 					}

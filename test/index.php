@@ -10,7 +10,7 @@ if($_GET["offset"])
 else
 	$offset=0;
 
-CModule::IncludeModule("catalog");
+CModule::Inclu deModule("catalog");
 CModule::IncludeModule("iblock");
 CModule::IncludeModule("sale");
 	

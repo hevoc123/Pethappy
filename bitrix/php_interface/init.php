@@ -1,4 +1,15 @@
 <?
+
+AddEventHandler("sale", "OnSaleCancelOrder", "setCancelStatus");
+
+function setCancelStatus($orderID, $value, $description)
+{
+    if($value=="Y")
+        CSaleOrder::StatusOrder($orderID, "E");
+    if($value=="N")
+        CSaleOrder::StatusOrder($orderID, "N");
+}
+
 AddEventHandler("sale", "OnOrderNewSendEmail", "bxModifySaleMails");
 
 function bxModifySaleMails($orderID, &$eventName, &$arFields)
@@ -58,8 +69,24 @@ function bxModifySaleMails($orderID, &$eventName, &$arFields)
     $arFields["USER_NAME"] = $props["FIO"]["VALUE"];
     if($arOrder["DELIVERY_ID"]==4)
         $arFields["DELIVERY_TYPE"]="Самовывоз";
-    elseif($arOrder["DELIVERY_ID"]==5)
-        $arFields["DELIVERY_TYPE"]="Курьер";
+    elseif($arOrder["DELIVERY_ID"]==5) {
+
+        if(date('l', strtotime($props["DATE"]["VALUE"]))=="Monday") $day='Понедельник';
+        if(date('l', strtotime($props["DATE"]["VALUE"]))=="Tuesday") $day='Вторник';
+        if(date('l', strtotime($props["DATE"]["VALUE"]))=="Wednesday") $day='Среда';
+        if(date('l', strtotime($props["DATE"]["VALUE"]))=="Thursday") $day='Четверг';
+        if(date('l', strtotime($props["DATE"]["VALUE"]))=="Friday") $day='Пятница';
+        if(date('l', strtotime($props["DATE"]["VALUE"]))=="Saturday") $day='Суббота';
+        if(date('l', strtotime($props["DATE"]["VALUE"]))=="Sunday") $day='Воскресенье';
+
+        $arFields = array(
+            "COMMENTS" => $day.' > '.$props["DATE"]["VALUE"]." > ".($props["TIME"]["VALUE"]==4 ? "18:00-23:00": "10:00-23:00" ),
+        );
+
+        CSaleOrder::Update($orderID, $arFields);
+
+        $arFields["DELIVERY_TYPE"] = "Курьер";
+    }
     elseif($arOrder["DELIVERY_ID"]=="rus_post:land")
         $arFields["DELIVERY_TYPE"]="Почта";
     else

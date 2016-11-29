@@ -1811,7 +1811,6 @@ if($('#g-recaptcha').lendht > 0  || $('#g-recaptcha_product').lendht > 0){
                 console.log('капча прошла успешно');
             }
         });
-        // the second recaptcha product (http://www.piluli.ru/product/some_prf)
         grecaptcha.render('g-recaptcha_product', {
             'sitekey' : '6LdjHBQTAAAAAGQ1FRQxjxiEaKnsEpxR_ZPrmTP-',
             'size' : 'compact',
