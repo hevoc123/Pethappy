@@ -836,8 +836,8 @@ class SaleOrderAjax extends \CBitrixComponent
 		if (strlen($payerName) > 0)
 		{
 			$arNames = explode(" ", $payerName);
-			$newName = $arNames[1];
-			$newLastName = $arNames[0];
+			$newName = $arNames[0];
+			$newLastName = $arNames[1];
 		}
 
 		if (strlen($newLogin) < 3)
