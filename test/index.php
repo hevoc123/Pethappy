@@ -10,7 +10,7 @@ if($_GET["offset"])
 else
 	$offset=0;
 
-CModule::Include Module("catalog");
+CModule::IncludeModule("catalog");
 CModule::IncludeModule("iblock");
 CModule::IncludeModule("sale");
 	
@@ -30,7 +30,7 @@ CModule::IncludeModule("sale");
 		}
 		fclose($handle);
 		
-		foreach($orders as $id=>$order)
+		/*foreach($orders as $id=>$order)
 		{
 			$arOrder = CSaleOrder::GetByID($id);
 			if ($arOrder)
@@ -50,7 +50,7 @@ CModule::IncludeModule("sale");
 
 				CSaleOrderPropsValue::Add($arFields);
 			}
-		}
+		}*/
 
 	}
 
@@ -61,12 +61,23 @@ CModule::IncludeModule("sale");
 		"ABCDEFGHIJKLNMOPQRSTUVWXYZ",
 		"0123456789",
 	);
+
+    $users=Array();
+
+    $order = array('sort' => 'asc');
+    $tmp = 'sort';
+
+    $rsUsers = CUser::GetList($order, $tmp);
+    while ($arUser=$rsUsers->Fetch())
+    {
+        $users[$arUser["EMAIL"]]=$arUser["ID"];
+    }
 		
 	$hostname = 'online.moysklad.ru';
 	$username = 'admin@pethappy';
 	$password = '4ca60e65db';
 		
-	$result=file_get_contents("https://$username:$password@$hostname/api/remap/1.1/entity/customerorder?offset=".$offset."&limit=50&expand=state,positions,agent,assortment");
+	$result=file_get_contents("https://$username:$password@$hostname/api/remap/1.1/entity/customerorder?offset=".$offset."&limit=10&expand=state,positions,agent,assortment");
 
 	$temp=Array();
 
@@ -78,37 +89,38 @@ CModule::IncludeModule("sale");
 	
 	foreach($data["rows"] as $key=>$item)
 	{
-		$rsUser = CUser::GetByLogin($item["agent"]["email"]);
-		if($arUser = $rsUser->Fetch())
-		{
-			$USER_ID=$arUser["ID"];			
-		}
-		
-		if(!$USER_ID)
-		{
-			$def_group = COption::GetOptionString("main", "new_user_registration_def_group", "");
-			if($def_group!="")
-			{
-				$GROUP_ID = explode(",", $def_group);
-				$arPolicy = $USER->GetGroupPolicy($GROUP_ID);
-			}
-			else
-			{
-				$arPolicy = $USER->GetGroupPolicy(array());
-			}
+        $USER_ID=0;
 
-			$password_min_length = intval($arPolicy["PASSWORD_LENGTH"]);
-			if($password_min_length <= 0)
-				$password_min_length = 6;
+        if($users[$item["agent"]["email"]]) {
 
-			if($arPolicy["PASSWORD_PUNCTUATION"] === "Y")
-				$password_chars[] = ",.<>/?;:'\"[]{}\|`~!@#\$%^&*()-_+=";
-			$NEW_PASSWORD = $NEW_PASSWORD_CONFIRM = randString($password_min_length+2, $password_chars);
+            $USER_ID=$users[$item["agent"]["email"]];
+
+        }
+		else
+		{
+            $def_group = COption::GetOptionString("main", "new_user_registration_def_group", "");
+            if($def_group!="")
+            {
+                $GROUP_ID = explode(",", $def_group);
+                $arPolicy = $USER->GetGroupPolicy($GROUP_ID);
+            }
+            else
+            {
+                $arPolicy = $USER->GetGroupPolicy(array());
+            }
+
+            $password_min_length = intval($arPolicy["PASSWORD_LENGTH"]);
+            if($password_min_length <= 0)
+                $password_min_length = 6;
+
+            if($arPolicy["PASSWORD_PUNCTUATION"] === "Y")
+                $password_chars[] = ",.<>/?;:'\"[]{}\|`~!@#\$%^&*()-_+=";
+            $NEW_PASSWORD = $NEW_PASSWORD_CONFIRM = randString($password_min_length+2, $password_chars);
 
 			$user = new CUser;
 			$USER_ID = $user->Add(Array(
 				"LOGIN" => $item["agent"]["email"],
-				"NAME" => $item["agent"]["name"],
+				"NAME" => utf8win1251($item["agent"]["name"]),
 				"PASSWORD" => $NEW_PASSWORD,
 				"PASSWORD_CONFIRM" => $NEW_PASSWORD_CONFIRM,
 				"EMAIL" => $item["agent"]["email"],
@@ -118,6 +130,8 @@ CModule::IncludeModule("sale");
 				"LID" => "s1",
 				)
 			);
+
+            $users[$item["agent"]["email"]]=$USER_ID;
 		}
 				
 		$state=utf8win1251($item["state"]["name"]);
@@ -135,15 +149,18 @@ CModule::IncludeModule("sale");
 		//if($item["sum"]==$item["payedSum"]) $PAYED="Y";
 		
 		print_r($USER_ID); echo "ЮЗЕР ИД <br />";
-		
-		$FUSER_ID=CSaleUser::GetList(array('USER_ID' => $USER_ID));
 
-		if(!$FUSER_ID['ID'])                  
-			$FUSER_ID['ID']=CSaleUser::_Add(array("USER_ID" => $USER_ID));
-		
-		$FUSER_ID=$FUSER_ID['ID'];
-   
-		$DELIVERY_ID=4; $PRICE_DELIVERY=0;
+        if ($USER_ID) {
+            $FUSER_ID = CSaleUser::GetList(array('USER_ID' => $USER_ID));
+
+            if (!$FUSER_ID['ID'])
+                $FUSER_ID['ID'] = CSaleUser::_Add(array("USER_ID" => $USER_ID));
+
+            $FUSER_ID = $FUSER_ID['ID'];
+        }
+
+        $DELIVERY_ID = 4;
+        $PRICE_DELIVERY = 0;
 		
 		CSaleBasket::DeleteAll($FUSER_ID, False);
    
@@ -271,7 +288,7 @@ CModule::IncludeModule("sale");
 		   "DATE_UPDATE" => ConvertTimeStamp(strtotime($item["updated"]), 'FULL', 's1'),
 		);
 		
-		var_dump($arFields); die();
+		//var_dump($arFields); die();
 
 		$ORDER_ID = CSaleOrder::Add($arFields);
 		$ORDER_ID = IntVal($ORDER_ID);
@@ -326,23 +343,11 @@ CModule::IncludeModule("sale");
 			print_r($item["code"]); echo "Все хуево ордер ид ".$ORDER_ID."<br />";
 			die();
 		}
-						
+
 		//if($key > 10) die();
 	}
 
-	
-	/*for($i=100;$i < $size; $i+=100)
-	{
-		$result=file_get_contents("https://$username:$password@$hostname/api/remap/1.1/entity/customerorder?limit=100&offset=".$i);
-		$data=json_decode($result, true);
-		foreach($data["rows"] as $item)
-		{
-			
-
-		}
-	}*/
-
-	$offset+=50;
+	$offset+=10;
 ?>
 <script>
 	$(document).ready(function () {
