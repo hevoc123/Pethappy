@@ -1,7 +1,7 @@
 <?
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+require($_SE RVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 
-global $APPL ICATION;
+global $APPLICATION;
 global $USER;
 
 
@@ -44,7 +44,7 @@ foreach($data["rows"] as $key=>$item)
 
                 $dbBasketItems=CSaleBasket::GetList(Array("ID"=>"ASC"), Array("ORDER_ID"=>$item["code"]), false, false, Array("ID", "PRICE"));
 
-                while($arI tems=$dbBasketItems->Fetch())
+                while($arItems=$dbBasketItems->Fetch())
                 {
                     if((float)$arItems["PRICE"]==((float)$position["price"]/100)) {
                         $price = ((float)$position["price"] / 100 * (100 - (float)$position["discount"])) / 100;
