@@ -106,7 +106,7 @@ function bxModifySaleMails($orderID, &$eventName, &$arFields)
         if(date('l', strtotime($props["DATE"]["VALUE"]))=="Sunday") $day='Воскресенье';
 
         $arFields = array(
-            "COMMENTS" => $day.' > '.$props["DATE"]["VALUE"]." > ".($props["TIME"]["VALUE"]==4 ? "18:00-23:00": "10:00-23:00" ),
+            "COMMENTS" => $day.' > '.$props["DATE"]["VALUE"]." > ".($props["TIME"]["VALUE"]==4 ? "18:00-23:00": "10:00-18:00" ),
         );
 
         CSaleOrder::Update($orderID, $arFields);

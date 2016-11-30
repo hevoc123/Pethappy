@@ -148,11 +148,23 @@ $rating=ceil($total_rating/$rcount);
 				<span class="text">Цена</span>
 				<span itemprop="price" class="product_item_price_digit cur-price">
 					<?if(is_array($arResult["OFFERS"]) && !empty($arResult["OFFERS"])):?>
-						<?foreach($arOffer["PRICES"] as $code=>$arPrice):?>
-							<?if($arPrice["CAN_ACCESS"]):?>
-								<?=round($arPrice["VALUE"])?>
-							<?endif;?>
-						<?endforeach;?>
+						<?if($_GET["size"]):?>
+							<?foreach($arResult["OFFERS"] as $key=>$arOff):?>
+								<?if($_GET["size"]==$arOff["ID"]):?>
+									<?foreach($arOff["PRICES"] as $code=>$arPrice):?>
+										<?if($arPrice["CAN_ACCESS"]):?>
+											<?=round($arPrice["VALUE"])?>
+										<?endif;?>
+									<?endforeach;?>
+								<?endif;?>
+							<?endforeach;?>
+						<?else:?>
+							<?foreach($arOffer["PRICES"] as $code=>$arPrice):?>
+								<?if($arPrice["CAN_ACCESS"]):?>
+									<?=round($arPrice["VALUE"])?>
+								<?endif;?>
+							<?endforeach;?>
+						<?endif;?>
 					<?else:?>
 						<?
 						//var_dump($arResult["CATALOG_QUANTITY"]);
@@ -173,9 +185,11 @@ $rating=ceil($total_rating/$rcount);
 			
 			<?if(is_array($arResult["OFFERS"]) && !empty($arResult["OFFERS"])):?>
 				<div class="sec-offers-list" style="display: block;">
-					<?$first=true;
+					<?
+					$first=true;
+					if($_GET["size"]) $first=false;
 					foreach($arResult["OFFERS"] as $key=>$arOff):?>
-						<div class="sec-offer-prop<?if($arOff["CATALOG_QUANTITY"] > 0 && $first):?> curr-offer<?$first=false; endif; if($arOff["CATALOG_QUANTITY"] <= 0):?> not-available<?endif?>">
+						<div class="sec-offer-prop<?if(($arOff["CATALOG_QUANTITY"] > 0 && $first) || ($_GET["size"]==$arOff["ID"] && $_GET["size"]) ):?> curr-offer<?$first=false; endif; if($arOff["CATALOG_QUANTITY"] <= 0):?> not-available<?endif?>">
 							<a href="#" data-inbasket='<?=( in_array($arOff["ID"], $arResult["INBASKET_ID"]) ? $arResult["INBASKET"][$arOff["ID"]] : 0 )?>' data-price='<?foreach($arOff["PRICES"] as $code=>$arPrice):?><?=round($arPrice["VALUE"])?><?endforeach;?>' data-id='<?=$arOff["ID"]?>' data-max='<?=$arOff["CATALOG_QUANTITY"]?>' data-canbuy='<?=($arOff["CATALOG_QUANTITY"] > 0 ? "Y" : "N")?>' >
 								<?=$arOff["PROPERTIES"]["IMYIE_CML2ATTR_FASOVKA"]["VALUE"]?>
 							</a>
@@ -183,10 +197,21 @@ $rating=ceil($total_rating/$rcount);
 					<?endforeach;?> 
 				</div>
 			<?endif;?>
-					
-
 			<div class="btn-wrap header_recalculate">
-				<div class="spinbox small  _plusMinus recalculate" data-id="<?=$curid?>" data-price="<?=(is_array($arResult["OFFERS"]) && !empty($arResult["OFFERS"]) ? $arOffer["CATALOG_PRICE_2"] : $arResult["CATALOG_PRICE_2"])?>" data-min_qty="0" data-sale_price="<?=(is_array($arResult["OFFERS"]) && !empty($arResult["OFFERS"]) ? $arOffer["CATALOG_PRICE_2"] : $arResult["CATALOG_PRICE_2"])?>" data-common_price="<?=(is_array($arResult["OFFERS"]) && !empty($arResult["OFFERS"]) ? $arOffer["CATALOG_PRICE_2"] : $arResult["CATALOG_PRICE_2"])?>">
+				<?
+				if($_GET["size"])
+				{
+					foreach($arResult["OFFERS"] as $key=>$arOff)
+					{
+						if($_GET["size"]==$arOff["ID"] && $arOff["CATALOG_QUANTITY"] < 1) {
+							$hide = 'style="display: none;"';
+							$available=false;
+							$arOffer=$arOff;
+						}
+					}
+				}
+				?>
+				<div class="spinbox small  _plusMinus recalculate" <?=$hide?> data-id="<?=$curid?>" data-price="<?=(is_array($arResult["OFFERS"]) && !empty($arResult["OFFERS"]) ? $arOffer["CATALOG_PRICE_2"] : $arResult["CATALOG_PRICE_2"])?>" data-min_qty="0" data-sale_price="<?=(is_array($arResult["OFFERS"]) && !empty($arResult["OFFERS"]) ? $arOffer["CATALOG_PRICE_2"] : $arResult["CATALOG_PRICE_2"])?>" data-common_price="<?=(is_array($arResult["OFFERS"]) && !empty($arResult["OFFERS"]) ? $arOffer["CATALOG_PRICE_2"] : $arResult["CATALOG_PRICE_2"])?>">
 					<a href="javascript:void(0)" class="minus buttonMinus"></a>
 					<input type="text" maxlength="3" max="<?=(is_array($arResult["OFFERS"]) && !empty($arResult["OFFERS"]) ? $arOffer["CATALOG_QUANTITY"] : $arResult["CATALOG_QUANTITY"])?>" class="_addCount" value="<?=( in_array($curid, $arResult["INBASKET_ID"]) ? $arResult["INBASKET"][$curid] : 1 )?>">
 					<a href="javascript:void(0)" class="plus buttonPlus">+</a>
