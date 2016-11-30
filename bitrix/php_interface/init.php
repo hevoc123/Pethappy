@@ -1,4 +1,30 @@
 <?
+AddEventHandler("sale", "OnBeforeBasketAdd", "addPropertyToBasket");
+
+function addPropertyToBasket(&$arFields) {
+    $arProps=Array();
+    $temp=CIBlockElement::GetList(Array(), Array("ID"=>$arFields["PRODUCT_ID"]), false, false, Array("ID", "IBLOCK_ID", "PROPERTY_IMYIE_CML2ATTR_FASOVKA"))->GetNext();
+    if($temp["IBLOCK_ID"]==4)
+    {
+        $arProps[]=Array(
+            "NAME"=>"Фасовка",
+            "VALUE"=>$temp["PROPERTY_IMYIE_CML2ATTR_FASOVKA_VALUE"],
+        );
+        $arFields["PROPS"]=$arProps;
+    }
+    else
+    {
+        $temp=CIBlockElement::GetList(Array(), Array("IBLOCK_ID"=>2, "ID"=>$arFields["PRODUCT_ID"]), false, false, Array("ID", "IBLOCK_ID", "PROPERTY_IMYIE_CML2ATTR_FASOVKA"))->GetNext();
+        if($temp["PROPERTY_IMYIE_CML2ATTR_FASOVKA_VALUE"]) {
+            $arProps[]=Array(
+                "NAME"=>"Фасовка",
+                "VALUE"=>$temp["PROPERTY_IMYIE_CML2ATTR_FASOVKA_VALUE"],
+            );
+            $arFields["PROPS"]=$arProps;
+        }
+
+    }
+}
 
 AddEventHandler("sale", "OnSaleCancelOrder", "setCancelStatus");
 

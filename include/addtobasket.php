@@ -14,8 +14,9 @@ if($_REQUEST["ID"])
 		$quantity=intval($_REQUEST["q"]);
 	else 
 		$quantity=1;
-	
-	$res = CIBlockElement::GetList(Array("ID"=>"DESC"), Array("ID"=>$_REQUEST["ID"]), false, false, Array("ID", "NAME", "CATALOG_GROUP_2"));
+
+    $arProps=Array();
+	$res = CIBlockElement::GetList(Array("ID"=>"DESC"), Array("ID"=>$_REQUEST["ID"]), false, false, Array("ID", "NAME", "CATALOG_GROUP_2", "PROPERTY_IMYIE_CML2ATTR_FASOVKA"));
 	while($ar_res = $res->GetNext())
 	{
 		$av_q=$ar_res["CATALOG_QUANTITY"];
