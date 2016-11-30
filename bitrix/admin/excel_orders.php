@@ -72,15 +72,14 @@ $tmpItems=Array();
 while ($arOrder = $dbOrderList->Fetch())
 {
 	$props=Array();
-	//var_dump($arOrder);
-	//continue;
-	
+
 	$db_props = CSaleOrderPropsValue::GetOrderProps($arOrder["ID"]);
 	while ($arProps = $db_props->Fetch())
 	{
 		$props[$arProps["CODE"]]=$arProps;
 	}
 
+	$j=intval($arOrder["ID"]);
 	$tmpItems[$j]["ID"]=$arOrder["ID"];
 
 	$tmpItems[$j]["TIME"]=$props["TIME"]["VALUE"];
@@ -96,31 +95,40 @@ while ($arOrder = $dbOrderList->Fetch())
 
 	$tmpItems[$j]["COMMENTS"]=$arOrder["COMMENTS"];
 
-	$j++;
+    if($props["TIME"]["VALUE"]==4) {
+        $tmpItems[$j]["FROM"]="18:00";
+        $tmpItems[$j]["TO"]="23:00";
+    }
+    else {
+        $tmpItems[$j]["FROM"]="10:00";
+        $tmpItems[$j]["TO"]="18:00";
+    }
 
 }
+
+ksort($tmpItems);
 
 //$objPHPExcel->getActiveSheet()->insertNewRowBefore(9, $j);
 
 $i=8;
 $objPHPExcel->setActiveSheetIndex(0)->setCellValue('H1', date("d.m.Y", strtotime("today")));
 
-	$by="TIME";
-	
+	/*$by="TIME";
+
 	$sort_num=Array();
 
 	foreach($tmpItems as $c=>$key) {
 		$sort_num[] = $key[$by];
 	}
-		
-	array_multisort($sort_num, SORT_ASC, $tmpItems);
+
+	array_multisort($sort_num, SORT_ASC, $tmpItems);*/
 
 
 foreach($tmpItems as $key=>$item) {
 	
 	$i++;
 	$objPHPExcel->setActiveSheetIndex(0)
-				->setCellValue('A'.$i, $key+1)	
+				->setCellValue('A'.$i, $i-8)
 	         	
 				
 				->setCellValue('C'.$i, mb_convert_encoding($item["ID"], "UTF-8", "windows-1251")) 
@@ -140,6 +148,8 @@ foreach($tmpItems as $key=>$item) {
 				//->setCellValue("O".$i, mb_convert_encoding($item["PRICE"], "UTF-8", "windows-1251"))
 				->setCellValue("M".$i, mb_convert_encoding($item["COMMENTS"], "UTF-8", "windows-1251"))
 				->setCellValue("I".$i, mb_convert_encoding("Зоотовары", "UTF-8", "windows-1251"))
+                ->setCellValue("N".$i, mb_convert_encoding($item["FROM"], "UTF-8", "windows-1251"))
+                ->setCellValue("O".$i, mb_convert_encoding($item["TO"], "UTF-8", "windows-1251"))
 				; 
 $style_wrap = array(
 	//рамки
