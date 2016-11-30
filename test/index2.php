@@ -14,44 +14,46 @@ if (($handle = fopen($_SERVER["DOCUMENT_ROOT"]."/upload/last.csv", 'r')) !== FAL
     {
         $i++;
         if($i==1) continue;
-        $orders[$row[0]]["status"]=$row["1"];
-        $orders[$row[0]]["payed"]=$row["16"];
+        $orders[$row[0]]["name"]=$row["3"];
+        $orders[$row[0]]["phone"]=$row["5"];
 
-        //var_dump($orders[$row[0]]);
+        var_dump($row[0]); var_dump($orders[$row[0]]);
     }
     fclose($handle);
 
     foreach($orders as $id=>$order)
     {
-        //if($id < 6955) continue;
         $arOrder = CSaleOrder::GetByID($id);
         if ($arOrder)
         {
-            $arFields=Array();
-            if($order["payed"]=="Да")
-                $arFields["PAYED"]="Y";
-            else
-                $arFields["PAYED"]="N";
+            $arFields = array(
+                "VALUE" => $order["name"]
+            );
 
-            if(strstr($order["status"], "[D]"))
-                $arFields["STATUS_ID"]="D";
-            elseif(strstr($order["status"], "[A]"))
-                $arFields["STATUS_ID"]="N";
-            elseif(strstr($order["status"], "[B]"))
-                $arFields["STATUS_ID"]="B";
-            elseif(strstr($order["status"], "[C]"))
-                $arFields["STATUS_ID"]="C";
-            elseif(strstr($order["status"], "[E]")) {
-                $arFields["STATUS_ID"] = "E";
-                $arFields["CANCELED "] = "Y";
-            }
-            elseif(strstr($order["status"], "[F]"))
-                $arFields["STATUS_ID"]="F";
-            elseif(strstr($order["status"], "[G]"))
-                $arFields["STATUS_ID"]="G";
+            $db_vals = CSaleOrd erPropsValue::GetList(
+                array("SORT" => "ASC"),
+                array(
+                    "ORDER_ID" => $id,
+                    "ORDER_PROPS_ID" => 1
+                )
+            );
+            if ($arVals = $db_vals->Fetch())
+                CSaleOrderPropsValue::Update($arVals["ID"], $arFields);
 
-            var_dump($id);var_dump($arFields);
-            CSale Order::Update($id, $arFields);
+            $arFields = array(
+                "VALUE" => $order["phone"]
+            );
+
+            $db_vals = CSaleOrderPropsValue::GetList(
+                array("SORT" => "ASC"),
+                array(
+                    "ORDER_ID" => $id,
+                    "ORDER_PROPS_ID" => 3
+                )
+            );
+            if ($arVals = $db_vals->Fetch())
+                CSaleOrderPropsValue::Update($arVals["ID"], $arFields);
+
         }
     }
 
