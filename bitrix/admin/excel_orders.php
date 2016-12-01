@@ -87,6 +87,8 @@ while ($arOrder = $dbOrderList->Fetch())
 	$tmpItems[$j]["TIME_TO"]=$time[1];
 
 	$tmpItems[$j]["FIO"]=$props["FIO"]["VALUE"];
+    $arLocs = CSaleLocation::GetByID($props["LOCATION"]["VALUE"], LANGUAGE_ID);
+    $tmpItems[$j]["LOCATION"]=$arLocs;
 	$tmpItems[$j]["ADDRESS"]=$props["ADDRESS"]["VALUE"];
 	$tmpItems[$j]["PHONE"]=$props["PHONE"]["VALUE"];
 
@@ -137,8 +139,7 @@ foreach($tmpItems as $key=>$item) {
 				->setCellValue("O".$i, mb_convert_encoding($item["TIME_TO"]." ", "UTF-8", "windows-1251"))
 				
 				->setCellValue("B".$i, date("d.m.Y", strtotime("+1 day")))
-				->setCellValue("D".$i, mb_convert_encoding("Москва", "UTF-8", "windows-1251"))			
-				
+				->setCellValue("D".$i, mb_convert_encoding(($item["LOCATION"]["CITY_NAME_LANG"] ? $item["LOCATION"]["CITY_NAME_LANG"] : "Москва"), "UTF-8", "windows-1251"))
 
 				->setCellValue("E".$i, mb_convert_encoding($item["ADDRESS"], "UTF-8", "windows-1251"))					
 				->setCellValue("G".$i, mb_convert_encoding($item["PHONE"], "UTF-8", "windows-1251"))		

@@ -14,16 +14,23 @@ if (($handle = fopen($_SERVER["DOCUMENT_ROOT"]."/upload/last.csv", 'r')) !== FAL
     {
         $i++;
         if($i==1) continue;
-        $orders[$row[0]]["name"]=$row["3"];
-        $orders[$row[0]]["phone"]=$row["5"];
-
-        var_dump($row[0]); var_dump($orders[$row[0]]);
+        $orders[$row[0]]["payed"]=$row["16"];
     }
     fclose($handle);
 
     foreach($orders as $id=>$order)
     {
-        $arOrder = CSaleOrder::GetByID($id);
+        if($order["payed"]==" Да")
+        {
+            var_dump($id); var_dump($order["payed"]);
+            if (!CSale Order::PayOrder($id, "Y", false, false, 0, array()))
+            {
+                echo "Ошибка обновления заказа"; //die();
+            }
+
+        }
+
+        /*$arOrder = CSaleOrder::GetByID($id);
         if ($arOrder)
         {
             $arFields = array(
@@ -54,7 +61,7 @@ if (($handle = fopen($_SERVER["DOCUMENT_ROOT"]."/upload/last.csv", 'r')) !== FAL
             if ($arVals = $db_vals->Fetch())
                 CSaleOrderPropsValue::Update($arVals["ID"], $arFields);
 
-        }
+        }*/
     }
 
 }
