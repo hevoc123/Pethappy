@@ -59,7 +59,6 @@
 							<div class="sec-profile__order-info left">
 								<a href="#" class="name">Заказ № <?=$order["ORDER"]["ACCOUNT_NUMBER"]?></a>
 								<span class="date"><?=$order["ORDER"]["DATE_INSERT_FORMATED"];?></span>
-
 							</div>
 							<div class="sec-profile__order-status left">
 								<?if($order["ORDER"]["PAYED"] == "Y"):?>
@@ -120,7 +119,9 @@
 							</div>
 
 							<div class="sec-profile__order-tools left">
+                                <?if($order["PAYMENT"][0]["PAY_SYSTEM_ID"]!=3):?><a href="/include/payment.php?ORDER_ID=<?=$order["ORDER"]["ACCOUNT_NUMBER"]?>"><i class="piluli-76"></i>Оплатить</a><?endif;?>
 								<a href="<?=$order["ORDER"]["URL_TO_COPY"]?>" class=""><i class="piluli-repeat"></i>Повторить заказ</a>
+
 							</div>
 						</div>
 
@@ -155,7 +156,18 @@
 							<? // DELIVERY SYSTEM ?>
 							<? $deliveryServiceList = array(); ?>
 							<?foreach ($order['SHIPMENT'] as $shipment):?>
-								<? $deliveryServiceList[] = $arResult['INFO']['DELIVERY'][$shipment['DELIVERY_ID']]['NAME'];?>
+								<?php
+								if($shipment['DELIVERY_ID']==4)
+									$dname="Самовывоз";
+								elseif($shipment['DELIVERY_ID']==5)
+									$dname="Курьером";
+								elseif($shipment['DELIVERY_ID']=="rus_post:land")
+									$dname="Почтой";
+								else
+									$dname="ПЭК";
+								//var_dump($shipment);
+								?>
+								<? $deliveryServiceList[] = $dname;?>
 							<?endforeach;?>
 
 							<?if(!empty($deliveryServiceList)):?>
@@ -163,13 +175,13 @@
 							<?endif?>
 							</div>
 							<?
-							$dbOrderProps = CSaleOrderPropsValue::GetList(
+							/*$dbOrderProps = CSaleOrderPropsValue::GetList(
 									array("SORT" => "ASC"),
 									array("ORDER_ID" => $order["ORDER"]["ID"], "CODE"=>array("LOCATION", "ADDRESS"))
 							);
 							while ($arOrderProps = $dbOrderProps->GetNext()):
 								echo $arOrderProps["VALUE"]." ";
-							endwhile;							
+							endwhile;	*/
 							?>
 						</div>
 					</div>

@@ -1,10 +1,11 @@
 <?
-AddEventHandler("sale", "OnSuccessCatalogImport1C", "AfterImport");
+AddEventHandler("iblock", "OnBeforeIBlockElementUpdate", "DropPreviewTextUpdate");
 
-function AfterImport($arParams, $filename)
+function DropPreviewTextAdd(&$arFields)
 {
-    if(strpos($_REQUEST['filename'], 'offers') !== false)
-        update_articles();
+    if ($_REQUEST['mode'] == 'import') {
+        //$arFields["PROPERTY_VALUES"][""]
+    }
 }
 
 AddEventHandler("sale", "OnBeforeBasketAdd", "addPropertyToBasket");
@@ -113,9 +114,7 @@ function bxModifySaleMails($orderID, &$eventName, &$arFields)
         if(date('l', strtotime($props["DATE"]["VALUE"]))=="Saturday") $day='Суббота';
         if(date('l', strtotime($props["DATE"]["VALUE"]))=="Sunday") $day='Воскресенье';
 
-        $arFields["COMMENTS"] = $day.' > '.$props["DATE"]["VALUE"]." > ".($props["TIME"]["VALUE"]==4 ? "18:00-23:00": "10:00-18:00" );
-
-        CSaleOrder::Update($orderID, $arFields);
+        CSaleOrder::Update($orderID, Array("COMMENTS"=>$day.' > '.$props["DATE"]["VALUE"]." > ".($props["TIME"]["VALUE"]==4 ? "18:00-23:00": "10:00-18:00" )));
 
         $arFields["DELIVERY_TYPE"] = "Курьер";
     }
@@ -309,8 +308,6 @@ AddEventHandler("catalog", "OnSuccessCatalogImport1C", "MyOnStoreProductSave");
 define("LOG_FILENAME", $_SERVER["DOCUMENT_ROOT"] . "/log.txt");
 function MyOnStoreProductSave()
 {
-
-    AddMessage2Log("Файл " . $_REQUEST['filename'], "my_module_id");
     if (CModule::IncludeModule('catalog') & CModule::IncludeModule('iblock') && strstr($_REQUEST['filename'], 'offers')) {
 
         $arSelect = Array("ID", "NAME", "CATALOG_GROUP_2");
@@ -336,15 +333,7 @@ function MyOnStoreProductSave()
                 AddMessage2Log("Цена " . $price, "my_module_id");
 
                 if ($price > 0) {
-                    /*$arFields = Array(
-                        "PRODUCT_ID" => $ar_res["ID"],
-                        "CATALOG_GROUP_ID" => 2,
-                        "PRICE" => intval($price),
-                        "CURRENCY" => "RUB"
-                    );*/
-
                     CPrice::SetBasePrice($ar_res["ID"], $price, "RUB");
-                    //CPrice::Update($ar_res["ID"], $arFields);
                 }
 
                 $arFieldsProduct = array(
@@ -355,6 +344,8 @@ function MyOnStoreProductSave()
 
             }
         }
+
+        update_articles();
     }
 }
 
