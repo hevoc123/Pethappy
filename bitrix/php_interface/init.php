@@ -1,4 +1,12 @@
 <?
+AddEventHandler("sale", "OnSuccessCatalogImport1C", "AfterImport");
+
+function AfterImport($arParams, $filename)
+{
+    if(strpos($_REQUEST['filename'], 'offers') !== false)
+        update_articles();
+}
+
 AddEventHandler("sale", "OnBeforeBasketAdd", "addPropertyToBasket");
 
 function addPropertyToBasket(&$arFields) {
@@ -105,9 +113,7 @@ function bxModifySaleMails($orderID, &$eventName, &$arFields)
         if(date('l', strtotime($props["DATE"]["VALUE"]))=="Saturday") $day='Суббота';
         if(date('l', strtotime($props["DATE"]["VALUE"]))=="Sunday") $day='Воскресенье';
 
-        $arFields = array(
-            "COMMENTS" => $day.' > '.$props["DATE"]["VALUE"]." > ".($props["TIME"]["VALUE"]==4 ? "18:00-23:00": "10:00-18:00" ),
-        );
+        $arFields["COMMENTS"] = $day.' > '.$props["DATE"]["VALUE"]." > ".($props["TIME"]["VALUE"]==4 ? "18:00-23:00": "10:00-18:00" );
 
         CSaleOrder::Update($orderID, $arFields);
 
@@ -169,7 +175,7 @@ function bxModifySaleMails($orderID, &$eventName, &$arFields)
     $arFields["DELIVERY_INFO"] .= '</table>';
     if($arOrder["PAYED"]=="Y") $arFields["PAYED"]="оплачен"; else $arFields["PAYED"]="неоплачен";
     if($arOrder["PAY_SYSTEM_ID"]!=3) $arFields["PAYMENT"]='
-    <form method="GET" action="http://www.pethapppy.ru/include/payment.php" target="_blank">
+    <form method="GET" action="http://pethappy.ru/include/payment.php" target="_blank">
     <input type="hidden" name="ORDER_ID" value="'.$arOrder['ID'].'">
     <input type="submit" value="Оплатить">
     </form>
