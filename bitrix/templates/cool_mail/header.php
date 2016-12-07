@@ -31,7 +31,7 @@ $serverName = $protocol . "://" . $arParams["SERVER_NAME"];
                     <a href="http://pethappy.ru/news/" style="color: #FFF;font: 13px/34px Arial, sans-serif;display: block;word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-line-height-rule: exactly;">Новости</a>
                 </li>
                 <li style="float: left;margin-left: 20px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-line-height-rule: exactly;">
-                    <a href="http://pethappy.ru/contact/" style="color: #FFF;font: 13px/34px Arial, sans-serif;display: block;word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-line-height-rule: exactly;">Контакты</a>
+                    <a href="http://pethappy.ru/pages/contacts" style="color: #FFF;font: 13px/34px Arial, sans-serif;display: block;word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-line-height-rule: exactly;">Контакты</a>
                 </li>
                 <li style="clear: both;float: left;margin-left: 20px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-line-height-rule: exactly;"></li>
             </ul>
