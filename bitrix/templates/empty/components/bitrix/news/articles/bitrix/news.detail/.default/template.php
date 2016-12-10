@@ -11,6 +11,7 @@
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
+$GLOBALS["RECOMMEND"]=($arResult["PROPERTIES"]["RECOMMEND"]["VALUE"]);
 ?>
 <div class="news-detail">
 	<?if($arParams["DISPLAY_PICTURE"]!="N" && is_array($arResult["DETAIL_PICTURE"])):?>

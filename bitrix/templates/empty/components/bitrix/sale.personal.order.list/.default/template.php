@@ -131,6 +131,13 @@
 							$i=1;
 							?>
 							<?foreach ($order["BASKET_ITEMS"] as $key=>$item):?>
+								<?
+								$temp=CIBlockElement::GetList(Array(), Array("ID"=>$item["PRODUCT_ID"]), false, false, Array("ID", "IBLOCK_ID", "PROPERTY_CML2_LINK.DETAIL_PAGE_URL"))->GetNext();
+								if($temp["IBLOCK_ID"]==4)
+								{
+									$item["DETAIL_PAGE_URL"]=$temp["PROPERTY_CML2_LINK_DETAIL_PAGE_URL"];
+								}
+								?>
 							<tr>
 								<td><a href="<?=$item["DETAIL_PAGE_URL"]?>"><i><?=$i?>.</i><?=$item['NAME']?>.</a></td>
 								<td><?=$item['QUANTITY']?> x <?=intval($item["PRICE"])?> руб.</td>
