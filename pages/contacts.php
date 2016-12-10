@@ -40,5 +40,5 @@ Pethappy.ru</div>
 Адрес пункта самовывоза: г. Москва, м. Бульвар Дмитрия Донского, улица Знаменские Садки, д.1Б</div>
 
 <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=G27pJrpQImBgF7BLgAEmkXSsAoFbXXOu&amp;width=100%25&amp;height=455&amp;lang=ru_RU&amp;sourceType=constructor&amp;scroll=true"></script>
-<div id="shema"></div><br /><br />
+<div id="shema"></div><br /><a href='javascript:window.print(); void 0;'>Распечатать карту</a><br />
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
